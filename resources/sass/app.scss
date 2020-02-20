@@ -1,0 +1,21 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "~bootstrap/scss/bootstrap";
+
+// Font awesome
+@import "~@fortawesome/fontawesome-free/css/all.css";
+
+// Custom style
+#file-player {
+    min-height: 100px;
+}
+
+.form-control.is-invalid,
+.form-control.is-valid {
+    background-image: none;
+}
