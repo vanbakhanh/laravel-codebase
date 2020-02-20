@@ -2,6 +2,7 @@ server {
     listen 443 ssl;
     server_name localhost;
     root /application/public;
+    client_max_body_size 108M;
 
     ssl_certificate     /application/docker/nginx/ssl/codebase.crt;
     ssl_certificate_key /application/docker/nginx/ssl/codebase.key;
@@ -39,12 +40,11 @@ server {
         deny all;
     }
 
-    access_log /var/log/nginx/access-codebase.log;
-    error_log  /var/log/nginx/error-codebase.log;
+    access_log /var/log/nginx/codebase_access.log;
+    error_log  /var/log/nginx/codebase_error.log;
 }
 
 server {
     listen 80;
-
     rewrite ^(.*) https://$host$1 permanent;
 }

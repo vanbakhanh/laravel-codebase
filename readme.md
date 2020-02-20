@@ -53,13 +53,6 @@ $ composer install
 $ cp .env.example .env
 ```
 
-Open file .env and config follow these variable.
-
-```bash
-APP_URL=https://webserver
-DB_HOST=mysql
-```
-
 Run these commands to continue set up.
 
 ```sh
