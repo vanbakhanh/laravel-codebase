@@ -20,7 +20,6 @@ services:
     working_dir: /application
     volumes:
       - .:/application
-      - ./docker/php-fpm/php-ini-overrides.ini:/etc/php/7.3/fpm/conf.d/99-overrides.ini
 
   mysql:
     image: mysql:8.0
@@ -32,8 +31,6 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=homestead
-      - MYSQL_USER_NAME=root
-      - MYSQL_PASSWORD=secret
     ports:
       - "3306:3306"
 
