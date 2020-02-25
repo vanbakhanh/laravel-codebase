@@ -27,12 +27,11 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\Contracts\PasswordResetRepository::class, \App\Repositories\Eloquents\PasswordResetRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\Contracts\ProfileRepository::class, \App\Repositories\Eloquents\ProfileRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\Contracts\FileRepository::class, \App\Repositories\Eloquents\FileRepositoryEloquent::class);
-        $this->app->bind(\App\Repositories\Contracts\ImageRepository::class, 
-            \App\Repositories\Eloquents\ImageRepositoryEloquent::class);
-        $this->app->bind(\App\Repositories\Contracts\AudioRepository::class, 
-            \App\Repositories\Eloquents\AudioRepositoryEloquent::class);
-        $this->app->bind(\App\Repositories\Contracts\VideoRepository::class, 
-            \App\Repositories\Eloquents\VideoRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\Contracts\ImageRepository::class, \App\Repositories\Eloquents\ImageRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\Contracts\AudioRepository::class, \App\Repositories\Eloquents\AudioRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\Contracts\VideoRepository::class, \App\Repositories\Eloquents\VideoRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\Contracts\FcmUserRepository::class, \App\Repositories\Eloquents\FcmUserRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\Contracts\FcmNotificationRepository::class, \App\Repositories\Eloquents\FcmNotificationRepositoryEloquent::class);
         //:end-bindings:
     }
 }
