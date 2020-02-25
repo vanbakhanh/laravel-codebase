@@ -2,7 +2,6 @@
 
 namespace App\Notifications;
 
-use App\Notifications\Channels\FcmChannel;
 use App\Notifications\Messages\FcmMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
@@ -34,7 +33,7 @@ class ExampleFireBaseNotification extends Notification
      */
     public function via($notifiable)
     {
-        return [FcmChannel::class];
+        return ['fcm'];
     }
 
     /**
