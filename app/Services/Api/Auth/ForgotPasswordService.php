@@ -2,7 +2,7 @@
 
 namespace App\Services\Api\Auth;
 
-use App\Notifications\Api\ResetPasswordNotification;
+use App\Notifications\ResetPasswordNotification;
 use App\Repositories\Contracts\PasswordResetRepository;
 use App\Services\AbstractService;
 use Carbon\Carbon;

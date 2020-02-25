@@ -2,9 +2,9 @@
 
 namespace App\Services;
 
-use App\Exceptions\DatabaseException;
 use DB;
 use Exception;
+use Illuminate\Database\QueryException;
 use Log;
 
 abstract class AbstractService
@@ -15,7 +15,7 @@ abstract class AbstractService
      * @param callable $callback
      * @return Response
      *
-     * @throws DatabaseException
+     * @throws Exception
      */
     protected function transaction(callable $callback)
     {
@@ -29,12 +29,20 @@ abstract class AbstractService
             DB::commit();
 
             return $data;
-        } catch (Exception $exception) {
+        }
+        catch (QueryException $exception) {
+            Log::error($exception->getMessage());
+
+            DB::rollBack();
+            
+            throw new Exception($exception->getMessage());
+        }
+        catch (Exception $exception) {
             Log::error($exception->getMessage());
 
             DB::rollBack();
 
-            throw new DatabaseException($exception->getMessage(), $exception->getCode());
+            throw new Exception($exception->getMessage(), $exception->getCode());
         }
     }
 }

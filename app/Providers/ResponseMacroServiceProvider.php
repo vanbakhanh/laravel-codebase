@@ -25,7 +25,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
     public function boot()
     {
         Response::macro('success', function ($success = null, $data = null, $code = HTTP_OK) {
-            $success = $success ?: trans('httpstatus.' . HTTP_OK);
+            $success = $success ?? trans('httpstatus.' . HTTP_OK);
 
             return Response::json([
                 'code' => $code,
@@ -36,7 +36,7 @@ class ResponseMacroServiceProvider extends ServiceProvider
 
         Response::macro('error', function ($error = null, $data = null, $code = HTTP_INTERNAL_SERVER_ERROR) {
             $code = $code > 0 ? $code : HTTP_INTERNAL_SERVER_ERROR;
-            $error = $error ?: trans('httpstatus.' . HTTP_INTERNAL_SERVER_ERROR);
+            $error = $error ?? trans('httpstatus.' . HTTP_INTERNAL_SERVER_ERROR);
 
             return Response::json([
                 'code' => $code,

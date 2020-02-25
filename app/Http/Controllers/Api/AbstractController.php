@@ -29,8 +29,8 @@ abstract class AbstractController extends Controller
      */
     protected function success($success = null, $data = null, $code = HTTP_OK)
     {
-        $data = $data ?: $this->apiData;
-        $success = $success ?: $this->apiMessage;
+        $data = $data ?? $this->apiData;
+        $success = $success ?? $this->apiMessage;
 
         return response()->success($success, $data, $code);
     }
@@ -44,8 +44,8 @@ abstract class AbstractController extends Controller
      */
     protected function error($error = null, $data = null, $code = HTTP_INTERNAL_SERVER_ERROR)
     {
-        $data = $data ?: $this->apiData;
-        $error = $error ?: $this->apiMessage;
+        $data = $data ?? $this->apiData;
+        $error = $error ?? $this->apiMessage;
 
         return response()->error($error, $data, $code);
     }

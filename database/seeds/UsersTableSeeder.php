@@ -16,12 +16,18 @@ class UsersTableSeeder extends Seeder
         User::truncate();
         Profile::truncate();
 
-        factory(User::class, 5)->create()->each(function ($user) {
+        // Super admin
+        factory(User::class, 1)->create([
+            'email' => 'admin@email.com',
+        ])->each(function ($user) {
             $user->profile()->save(factory(Profile::class)->make());
+            $user->assignRole(config('authorization.roles.super-admin'));
         });
 
-        User::find(2)->update([
-            'email' => 'user@email.com',
-        ]);
+        // User
+        factory(User::class, 5)->create()->each(function ($user, $key) {
+            $user->update(['email' => 'user+' . ($key + 1) . '@email.com']);
+            $user->profile()->save(factory(Profile::class)->make());
+        });
     }
 }

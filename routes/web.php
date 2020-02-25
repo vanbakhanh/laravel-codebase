@@ -38,4 +38,4 @@ Route::get('file/{id}', 'FileController@show')->name('file.show');
 /*
  * Admin Routes
  */
-require_once(__DIR__.'/admin/web.php');
+require_once __DIR__ . '/admin/web.php';

@@ -9,7 +9,7 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
-*/
+ */
 
 Route::group(['namespace' => 'Auth'], function () {
     // Register
@@ -26,7 +26,7 @@ Route::group(['namespace' => 'Auth'], function () {
     Route::post('password/email', 'ForgotPasswordController@sendResetTokenEmail');
     Route::post('password/verify-token', 'VerifyResetPasswordTokenController@verify');
     Route::post('password/reset', 'ResetPasswordController@reset');
-    
+
     // Verify email
     Route::get('email/verify/{id}', 'VerificationController@verify')->name('api.verification.verify')->middleware('signed');
 
@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     // Profile
     Route::get('me', 'ProfileController@show');
     Route::post('me', 'ProfileController@update');
-    
+
     // File
     Route::post('upload', 'FileController@upload')->name('file.upload');
 

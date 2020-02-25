@@ -10,7 +10,7 @@ return [
     | Here you may specify which of the default constants below you wish
     | to use as your default constants for the application.
     |
-    */
+     */
 
     'allow_file_extension' => 'jpeg,gif,jpg,png,mp4,mov,mp3,ogg,m4a,aac',
     'mimes' => [
@@ -31,22 +31,22 @@ return [
         'jpeg',
         'gif',
         'jpg',
-        'png'
+        'png',
     ],
     'audio_file_extensions' => [
         'mp3',
         'ogg',
         'm4a',
-        'aac'
+        'aac',
     ],
     'video_file_extensions' => [
         'mp4',
-        'mov'
+        'mov',
     ],
     'file_type' => [
         'image' => 0,
         'audio' => 1,
-        'video' => 2
+        'video' => 2,
     ],
     'file_type_extensions' => [
         'mp4' => 'video',
@@ -71,7 +71,7 @@ return [
     'path' => [
         'user' => [
             'avatar' => 'users/avatars/',
-        ]
+        ],
     ],
     'resize' => [
         'thumbnail' => [
@@ -81,13 +81,13 @@ return [
         'mobile' => [
             'width' => 300,
             'height' => 300,
-        ]
+        ],
     ],
     'pagination' => 15,
     'video_convert_status' => [
         'init' => 0,
         'error' => 1,
-        'complete' => 2
-    ]
-    
+        'complete' => 2,
+    ],
+
 ];
