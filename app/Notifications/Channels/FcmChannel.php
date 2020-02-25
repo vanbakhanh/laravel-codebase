@@ -2,7 +2,7 @@
 
 namespace App\Notifications\Channels;
 
-use App\Services\Web\Notification\CreateService;
+use App\Services\Web\FcmNotification\CreateService;
 use Illuminate\Notifications\Notification;
 
 class FcmChannel

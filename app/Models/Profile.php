@@ -87,7 +87,7 @@ class Profile extends Model implements Transformable
             $value = config('model.profile.avatar_default');
         }
 
-        $path = config('constants.path.user.avatar');
+        $path = config('model.profile.avatar_path');
 
         return asset(Storage::url($path . $value));
     }

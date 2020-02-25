@@ -68,11 +68,6 @@ return [
     'image_upload_folder' => 'images',
     'audio_upload_folder' => 'audios',
     'other_upload_folder' => 'others',
-    'path' => [
-        'user' => [
-            'avatar' => 'users/avatars/',
-        ],
-    ],
     'resize' => [
         'thumbnail' => [
             'width' => 300,

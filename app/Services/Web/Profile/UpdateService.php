@@ -35,7 +35,7 @@ class UpdateService extends AbstractService
 
         return $this->transaction(function () use ($request, $profile) {
             $data = $request->only($this->repository->getFillable());
-            $path = config('constants.path.user.avatar');
+            $path = config('model.profile.avatar_path');
 
             if ($request->has('avatar')) {
                 $data['avatar'] = Util::uploadFile($request->file('avatar'), $path, 'public');

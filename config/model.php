@@ -10,7 +10,7 @@ return [
     | Here you may specify which of the default constants below you wish
     | to use as your default constants for the application.
     |
-    */
+     */
 
     'user' => [
         'status' => [
@@ -33,6 +33,15 @@ return [
             ],
         ],
         'avatar_default' => 'default.png',
+        'avatar_path' => 'avatars/',
+    ],
+
+    'notification' => [
+        'unread' => 0,
+        'read' => 1,
+        'type' => [
+            'example' => 0,
+        ],
     ],
 
 ];
