@@ -238,7 +238,7 @@ return [
             'validators'   => 'Validators',
             'controllers'  => 'Http/Controllers',
             'provider'     => 'RepositoryServiceProvider',
-            'criteria'     => 'Criterias'
+            'criteria'     => 'Repositories\Criteria'
         ]
     ]
 ];

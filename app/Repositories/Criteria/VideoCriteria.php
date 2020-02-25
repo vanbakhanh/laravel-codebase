@@ -29,14 +29,14 @@ class VideoCriteria implements CriteriaInterface
     /**
      * Apply criteria in query repository
      *
-     * @param string              $model
+     * @param string $model
      * @param RepositoryInterface $repository
      *
      * @return mixed
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        
+
         $model = $model->where('type', config('constants.file_type.video'));
 
         return $model;

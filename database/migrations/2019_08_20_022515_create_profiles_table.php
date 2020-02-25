@@ -17,6 +17,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('avatar')->nullable();
@@ -24,7 +25,13 @@ class CreateProfilesTable extends Migration
             $table->string('phone')->nullable();
             $table->date('birthday')->nullable();
             $table->tinyInteger('gender')->nullable();
-            $table->unsignedBigInteger('user_id');
+            $table->smallInteger('height_ft')->nullable();
+            $table->smallInteger('height_in')->nullable();
+            $table->float('weight')->nullable();
+            $table->string('street')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
             $table->timestamps();
         });
     }

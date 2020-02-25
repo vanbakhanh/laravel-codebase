@@ -29,6 +29,13 @@ class Profile extends Model implements Transformable
         'phone',
         'birthday',
         'gender',
+        'height_ft',
+        'height_in',
+        'weight',
+        'street',
+        'city',
+        'state',
+        'zip_code',
     ];
 
     /**
@@ -92,7 +99,7 @@ class Profile extends Model implements Transformable
      */
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
 }

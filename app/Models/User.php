@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Notifications\Api\VerifyEmailNotification;
-use App\Notifications\Api\SendMailNewPasswordNotification;
+use App\Notifications\SendMailNewPasswordNotification;
+use App\Notifications\VerifyEmailNotification;
 use Hash;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Model;
@@ -78,16 +78,6 @@ class User extends Authenticatable implements Transformable, MustVerifyEmail
     }
 
     /**
-     * Relationship with profile table.
-     *
-     * @return mixed
-     */
-    public function profile()
-    {
-        return $this->hasOne('App\Models\Profile');
-    }
-
-    /**
      * Send the email verification notification.
      *
      * @return void
@@ -101,8 +91,44 @@ class User extends Authenticatable implements Transformable, MustVerifyEmail
         }
     }
 
+    /**
+     * Send email new password.
+     *
+     * @param string $password
+     * @return void
+     */
     public function sendEmailGeneratePasswordNotification($password)
     {
         $this->notify(new SendMailNewPasswordNotification($password));
+    }
+
+    /**
+     * Route notifications for the FCM channel.
+     *
+     * @return string
+     */
+    public function routeNotificationForFcm($notification)
+    {
+        return $this->fcmUsers()->pluck('token')->toArray();
+    }
+
+    /**
+     * Relationship with profile table.
+     *
+     * @return mixed
+     */
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    /**
+     * Relationship with user.
+     *
+     * @return void
+     */
+    public function fcmUsers()
+    {
+        return $this->hasMany(FcmUser::class, 'user_id', 'id');
     }
 }

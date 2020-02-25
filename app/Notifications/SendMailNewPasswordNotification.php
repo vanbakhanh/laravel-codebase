@@ -43,22 +43,9 @@ class SendMailNewPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject(trans('passwords.email_create.subject'))
-                    ->greeting(trans('passwords.email_create.greeting'))
-                    ->line(trans('passwords.email_create.reason'))
-                    ->line(trans('passwords.email_create.password', ['password' => $this->password]));
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
+            ->subject(trans('passwords.email_create.subject'))
+            ->greeting(trans('passwords.email_create.greeting'))
+            ->line(trans('passwords.email_create.reason'))
+            ->line(trans('passwords.email_create.password', ['password' => $this->password]));
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Notifications;
 
-use App\Channels\FcmChannel;
-use App\Common\FirebaseCloudMessage;
+use App\Notifications\Channels\FcmChannel;
+use App\Notifications\Messages\FcmMessage;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 
@@ -14,16 +14,16 @@ class ExampleFireBaseNotification extends Notification
     /**
      * @var object
      */
-    private $user;
+    private $object;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($object)
     {
-        $this->user = $user;
+        $this->object = $object;
     }
 
     /**
@@ -45,13 +45,10 @@ class ExampleFireBaseNotification extends Notification
      */
     public function toFcm($notifiable)
     {
-        $message = new FirebaseCloudMessage();
-        $message
+        return (new FcmMessage)
             ->setNotification([
-                'title' => 'Example notification',
-                'body' => $this->user->profile->last_name . ' has tested FireBaseNotification',
+                'title' => 'Notification title',
+                'body' => 'Notification body',
             ]);
-
-        return $message;
     }
 }

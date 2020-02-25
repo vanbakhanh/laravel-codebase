@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreateFilesTable extends Migration
 {
@@ -24,7 +24,6 @@ class CreateFilesTable extends Migration
             $table->tinyInteger('type');
             $table->string('job_id')->nullable();
             $table->boolean('processed')->default(false);
-            
             $table->timestamps();
             $table->softDeletes();
         });

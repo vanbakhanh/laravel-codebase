@@ -19,6 +19,7 @@ class AudioCriteria implements CriteriaInterface
 
     /**
      * AudioCriteria constructor.
+     * 
      * @param array $input
      */
     public function __construct($input = [])
@@ -29,14 +30,13 @@ class AudioCriteria implements CriteriaInterface
     /**
      * Apply criteria in query repository
      *
-     * @param string              $model
+     * @param string $model
      * @param RepositoryInterface $repository
      *
      * @return mixed
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        
         $model = $model->where('type', config('constants.file_type.audio'));
 
         return $model;

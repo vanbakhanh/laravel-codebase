@@ -19,6 +19,7 @@ class SearchVideoCriteria implements CriteriaInterface
 
     /**
      * SearchVideoCriteria constructor.
+     *
      * @param array $input
      */
     public function __construct($input = [])
@@ -29,18 +30,18 @@ class SearchVideoCriteria implements CriteriaInterface
     /**
      * Apply criteria in query repository
      *
-     * @param string              $model
+     * @param string $model
      * @param RepositoryInterface $repository
      *
      * @return mixed
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        if (! empty($this->input['user_id'])) {
+        if (!empty($this->input['user_id'])) {
             $model = $model->where('user_id', (int) $this->input['user_id']);
         }
 
-        if (! empty($this->input['processed'])) {
+        if (!empty($this->input['processed'])) {
             $model = $model->where('processed', (int) $this->input['processed']);
         }
 

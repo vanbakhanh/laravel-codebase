@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Storage;
 
 /**
@@ -42,7 +41,7 @@ class Image extends File
     }
 
     /**
-     * Get the direct link of s3 for mobile 
+     * Get the direct link of s3 for mobile
      */
     public function getMobileUrlAttribute()
     {
