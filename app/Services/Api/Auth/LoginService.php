@@ -2,7 +2,7 @@
 
 namespace App\Services\Api\Auth;
 
-use App\Exceptions\Api\UnauthorizedException;
+use App\Exceptions\Api\BadRequestException;
 use App\Services\AbstractService;
 use App\Services\Api\Passport\PassportService;
 use Auth;
@@ -37,20 +37,23 @@ class LoginService extends AbstractService
             'password',
             'client_id',
             'client_secret',
+            'fcm_token',
         ]);
 
-        if (Auth::attempt([
+        $isAuthenticated = Auth::attempt([
             'email' => $data['email'],
             'password' => $data['password'],
-        ])) {
-            $responses = $this->transaction(function () use ($data) {
-                return $this->passportService->passwordGrantToken($data);
-            });
-            $responses->user = auth()->user()->load('profile');
+        ]);
 
-            return $responses;
+        if ($isAuthenticated) {
+            return $this->transaction(function () {
+                $response = $this->passportService->passwordGrantToken($data);
+                $response->user = user()->load('profile');
+
+                return $response;
+            });
         }
 
-        throw new UnauthorizedException(trans('auth.failed'));
+        throw new BadRequestException(trans('auth.failed'));
     }
 }
