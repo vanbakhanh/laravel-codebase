@@ -39,6 +39,7 @@ class UpdateRequest extends FormRequest
                 'required',
                 'image',
                 'mimes:jpeg,png,jpg',
+                'file_extension:' . config('constants.allow_file_extension'),
             ],
             'address' => [
                 'nullable',
@@ -59,6 +60,50 @@ class UpdateRequest extends FormRequest
                 'integer',
                 'in:0,1,2',
             ],
+            'height_ft' => [
+                'nullable',
+                'integer',
+                'in:0,1,2,3,4,5,6,7,8,9,10',
+            ],
+            'height_in' => [
+                'nullable',
+                'integer',
+                'in:0,1,2,3,4,5,6,7,8,9,10',
+            ],
+            'weight' => [
+                'nullable',
+                'numeric',
+            ],
+            'street' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'city' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'state' => [
+                'nullable',
+                'string',
+                'max:255',
+            ],
+            'zip_code' => [
+                'nullable',
+            ],
+        ];
+    }
+
+    /**
+     * Get the validation messages that apply to the request.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'avatar.file_extension' => "We don't accept your file type.",
         ];
     }
 }
