@@ -26,7 +26,7 @@ Redis|redis|6379
   * Kill containers: `docker-compose kill`
   * View container logs: `docker-compose logs`
   * Execute command inside of container: `docker-compose exec SERVICE_NAME COMMAND` where `COMMAND` is whatever you want to run. Examples:
-        * Shell into the PHP container, `docker-compose exec php-fpm bash`
+        * Shell into the PHP container, `docker-compose exec php-fpm sh`
         * Run symfony console, `docker-compose exec php-fpm bin/console`
         * Open a mysql shell, `docker-compose exec mysql mysql -uroot -p CHOSEN_ROOT_PASSWORD`
 
@@ -48,7 +48,7 @@ After build and run docker, run these commands to set up for the application.
 ```sh
 $ npm install
 $ npm run dev
-$ docker-compose exec php-fpm bash
+$ docker-compose exec php-fpm sh
 $ composer install
 $ cp .env.example .env
 ```
