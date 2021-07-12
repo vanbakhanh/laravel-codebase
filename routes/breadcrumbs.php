@@ -5,12 +5,12 @@ Breadcrumbs::for('dashboard', function ($trail) {
 });
 
 Breadcrumbs::for('user', function ($trail) {
-    $trail->push('User', route('admin.user'));
+    $trail->push('User', route('admin.user.index'));
 });
 
 Breadcrumbs::for('user-edit', function ($trail, $user) {
     $trail->parent('user');
-    $trail->push('Edit', route('admin.user.edit', ['id' => $user->id]));
+    $trail->push('Edit', route('admin.user.edit', ['user' => $user->id]));
 });
 
 Breadcrumbs::for('user-create', function ($trail) {

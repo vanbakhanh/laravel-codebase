@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api\Auth;
 
 use App\Http\Controllers\Api\AbstractController;
 use App\Http\Requests\Api\Auth\LoginSocialRequest;
-use App\Services\Api\Social\LoginService;
+use App\Services\Api\Auth\Social\LoginService;
 
 class SocialController extends AbstractController
 {

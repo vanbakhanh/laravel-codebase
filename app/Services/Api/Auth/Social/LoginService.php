@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Api\Social;
+namespace App\Services\Api\Auth\Social;
 
 use App\Repositories\Contracts\UserRepository;
 use App\Services\AbstractService;

@@ -13,9 +13,5 @@ Route::group([
 
     Route::get('/', 'DashboardController@index')->name('index');
 
-    Route::resource('user', 'UserController', [
-        'names' => [
-            'index' => 'user',
-        ],
-    ]);
+    Route::resource('user', 'UserController');
 });

@@ -9,14 +9,16 @@
         <div class="card-header">
             <h3 class="card-title">{{ __('labels.admin.users.edit') }}</h3>
         </div>
-        {{ Form::open(['route' => ['admin.user.update', 'id' => $user->id], 'method' => 'PUT']) }}
+        <form action="{{ route('admin.user.update', ['user' => $user->id])  }}" method="post">
+            {{ csrf_field() }}
+            {{ method_field('PUT') }}
             <div class="card-body">
                 @include("admin.user.form")
             </div>
             <div class="card-footer">
-                {{ Form::submit(__('labels.general.buttons.save'), ['class' => 'btn btn-primary btn-md']) }}
+                <button class="btn btn-primary btn-md" type="submit">Update</button>
             </div>
-        {{ Form::close() }}
+        </form>
     </div>
 @endsection
 

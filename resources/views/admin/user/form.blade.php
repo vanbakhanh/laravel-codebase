@@ -31,5 +31,4 @@
         <label class="custom-control-label" for="active">{{ __('labels.general.active') }}</label>
     </div>
 </div>
-    <!-- /.card-body -->
-
+<!-- /.card-body -->

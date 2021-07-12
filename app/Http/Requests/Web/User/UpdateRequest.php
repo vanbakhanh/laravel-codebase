@@ -34,15 +34,6 @@ class UpdateRequest extends FormRequest
                 'string',
                 'max:255',
             ],
-            'password' => [
-                'string',
-                'min:8',
-                'max:16',
-            ],
-            'password_confirmation' => [
-                'required',
-                'same:password',
-            ],
         ];
     }
 }

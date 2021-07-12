@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Web\User\Admin\CreateRequest;
+use App\Http\Requests\Web\User\CreateRequest;
 use App\Http\Requests\Web\User\UpdateRequest;
 use Illuminate\Http\Request;
 use App\Services\Web\User\ListService;
