@@ -1,0 +1,1662 @@
+{
+	"info": {
+		"_postman_id": "f6e8a371-57af-4ea3-b4e5-f1672caae6f6",
+		"name": "Codebase Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "Khanh",
+									"description": "\n",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Van",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "khanh@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "eziozedd+20@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"description": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "fPUYeo8edwL2P6IAWBDxXbhkisXRhqFzD8raT0pC",
+									"description": "fPUYeo8edwL2P6IAWBDxXbhkisXRhqFzD8raT0pC",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/logout",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Resend verify email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/email/resend",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify email",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/email/verify/38?expires=1568605440&signature=baebd46ef82fd24256e5e100a88d5542ed8ef29dd9ca18d7a82b21d2a46446d3",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"email",
+								"verify",
+								"38"
+							],
+							"query": [
+								{
+									"key": "expires",
+									"value": "1568605440"
+								},
+								{
+									"key": "signature",
+									"value": "baebd46ef82fd24256e5e100a88d5542ed8ef29dd9ca18d7a82b21d2a46446d3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Forgot password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@email.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/password/email",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"password",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Verify reset password token",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@email.com",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "fdznUw",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/password/verify-token",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"password",
+								"verify-token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "user@email.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "12345678",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/password/reset",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"password",
+								"reset"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Social",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "provider",
+									"value": "google",
+									"description": "google, facebook, twitter, github",
+									"type": "text"
+								},
+								{
+									"key": "token",
+									"value": "ya29.GltfBxkkdg1tlgl_h4ynW5x3Ki6WLWyjTH71IacM11iDExG3s7f32oHi4XKlo1KyB2wsdbHql0YUo0m3VOotlJm8kjhscSKbhN-9QVJCV9lZ0l_F8_N0F-MUH0BT",
+									"description": "access_token from social account",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"description": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "h869ddwwnH4oGi0uz3xkJQiJ7HN56Tznr9H3n7TO",
+									"description": "fPUYeo8edwL2P6IAWBDxXbhkisXRhqFzD8raT0pC",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/login/social",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"login",
+								"social"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "refresh_token",
+									"value": "def50200a7a984910a3aa5b02fd66a1df0116bbfa23c3da22a565cc8e2d839c62d966879a29915793315892014e113071ed0fd8e3507bc34e11e7a6b949db988a24adeea39ac685db2e3844aee4c7176347059341c2199e35e84b7d2bfd5b1bf9f3b43d343d2f0f16ef88b5185f10bfcd7abe16c620a64f1f74b1dc0f13779de0e0900d6de3fc89195b6b2ed8689c35ab69dc5e18ad04f22edb3e35661fa31692a86968697a9748ad81a3bbcd214fda3c2c26df914589618bdb43e279190f5ee51bd66116e5c02381af90c92e4788813cecff1540722174aaac1c6feaaf832feec752d37eaa759753a20ef4d0fd1dafc98f055605e22891f45d63cb72bcbe70c35a4b3454ca6b3a97426fe136790b5aa43644f080cee4b23808e92f43a16aa3e7c8985d6cbc7b675eb88c43b616c81fda8c175b5893991b4ea3b28605a164dff2bbed97d765292f6addebce46ba89156967dfc6923ebd1c13a8889407be4fa228b",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "2",
+									"description": "2",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "tgYuKdKrZMZLChFJTrAA43A2vqyWKYY2F6ue0XF9",
+									"description": "fPUYeo8edwL2P6IAWBDxXbhkisXRhqFzD8raT0pC",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/token/refresh",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "File",
+			"item": [
+				{
+					"name": "Upload",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "text/plain",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "\n",
+									"type": "file",
+									"src": "/Users/nguyenlt/Downloads/sample-wake-birds.aac"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/upload",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"upload"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "{{url}}/api/aws/mediaconvert/subscriber",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImp0aSI6IjZmZTMyNzNkY2QzZGQzZTkyMWZiMGE0MWYwYTg4YmFlYTAxZGVmODIyMmUzODIwZGU4MWJiNDBiYzk5YzUxNTkyOWUyNGNkZWFmNzZkZWQwIn0.eyJhdWQiOiIyIiwianRpIjoiNmZlMzI3M2RjZDNkZDNlOTIxZmIwYTQxZjBhODhiYWVhMDFkZWY4MjIyZTM4MjBkZTgxYmI0MGJjOTljNTE1OTI5ZTI0Y2RlYWY3NmRlZDAiLCJpYXQiOjE1Njc1MDEyMzEsIm5iZiI6MTU2NzUwMTIzMSwiZXhwIjoxNTY4Nzk3MjMxLCJzdWIiOiIxIiwic2NvcGVzIjpbXX0.A3aYfUxilTaINfDI6uv0ljVC-9IJbLwkVjvJisTLMmb-I_jRlXlCGTxvqYyOTWhCrHHbYRn-6gHSovrE4KgTGjzApvfZOoBRlLWyGh5ztgYp0k2OjCpaEPE74als7xbTBWyopUjZBGpNgHYMSzYhXgVJwhmhEq1UB4cNPxFwNbshAHYkTNj8i3YfgUqA66QwrST8u2bFRzp0jVcWaq5-p45PUoR3Wfb7fQzSFgF-NnpnanL3WU1AmsTTEpp-mLm5ZhPdMVKrZZC4nED3cGEZFHqbxuD6YLZugHAm1A-f8qfDEqAfwagJWBBbzZakdOVebe_SF2Y-Rdpe2JroPv24UUXwb3QnUfxi7G65wyX9kRlakVarfdUpqerNXRAKVAxLPotVA6kLwdeJAvG8b8TujrMioeJox8NV7kCpU4xtaMGNdMyZ-ucI5w1dCOd0m4WR-vfi6oE-D7SV_HtaqLmkwf1UPdBMKGgZ_kA7tQTz_VYxT2a-DnXiX6uQ4ImkItsp5olTl2QA8DDsGVpEnlWYrPEes04yjqtIsn0H1BFXZIl9G1G1IuSBqtc4VIA1axr4Y03keNWu7TaGdP8G8cSGX5W2U0mHdqSB-RE59aVqrfqPVRGRfw2v4IAeKpN8NE0cET_avRc8CwHGz0L_Hwfr8t0N2bohxfvaTvL7qgZFM1o",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/x-www-form-urlencoded"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"description": "\n",
+									"type": "file",
+									"src": "/Users/nguyenlt/Downloads/bigbuck_bunny.mp4"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/aws/mediaconvert/subscriber",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"aws",
+								"mediaconvert",
+								"subscriber"
+							]
+						},
+						"description": "The subscriber api for aws cloudwatch"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "first_name",
+									"value": "Khanh",
+									"type": "text"
+								},
+								{
+									"key": "last_name",
+									"value": "Van",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "173 Nguyen Luong Bang",
+									"type": "text"
+								},
+								{
+									"key": "phone",
+									"value": "123456789",
+									"type": "text"
+								},
+								{
+									"key": "birthday",
+									"value": "1997/10/06",
+									"type": "text"
+								},
+								{
+									"key": "gender",
+									"value": "2",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/api/me",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Change Password",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": " current_password",
+									"value": "12345678",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "87654321",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "87654321",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/change-password",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Charge",
+					"item": [
+						{
+							"name": "Create charge",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "amount",
+											"value": "5000",
+											"description": "cents unit ( 1$ = 100 cents)",
+											"type": "text"
+										},
+										{
+											"key": "description",
+											"value": "Khanh testing",
+											"type": "text"
+										},
+										{
+											"key": "source",
+											"value": "tok_1FFCFTGzbvwL5suN4deBMNAW",
+											"description": "id token from Create token api",
+											"type": "text"
+										},
+										{
+											"key": "currency",
+											"value": "USD",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/charge/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"charge",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Token",
+					"item": [
+						{
+							"name": "Create token",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "number",
+											"value": "4242424242424242",
+											"description": "value for test, not change.",
+											"type": "text"
+										},
+										{
+											"key": "exp_month",
+											"value": "12",
+											"type": "text"
+										},
+										{
+											"key": "exp_year",
+											"value": "24",
+											"type": "text"
+										},
+										{
+											"key": "cvc",
+											"value": "123",
+											"type": "text"
+										},
+										{
+											"key": "name",
+											"value": "Khanh",
+											"description": "optional",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/token/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"token",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Payment Method",
+					"item": [
+						{
+							"name": "Create payment method",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "number",
+											"value": "4242424242424242",
+											"description": "value for test, not change.",
+											"type": "text"
+										},
+										{
+											"key": "exp_month",
+											"value": "9",
+											"type": "text"
+										},
+										{
+											"key": "exp_year",
+											"value": "20",
+											"type": "text"
+										},
+										{
+											"key": "cvc",
+											"value": "123",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[name]",
+											"value": "Khanh Van",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[email]",
+											"value": "vanbakhanh@gmail.com",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[phone]",
+											"value": "123456789",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][city]",
+											"value": "Da Nang",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][country]",
+											"value": "VN",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][line1]",
+											"value": "",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][line2]",
+											"value": "",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][postal_code]",
+											"value": "550000",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][state]",
+											"value": "",
+											"description": "optional",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/payment-method/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"payment-method",
+										"create"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List payment method",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/payment-method/list",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"payment-method",
+										"list"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Retrieve payment method",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "text/plain",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/api/payment/payment-method/retrieve?payment_method=pm_1FKFuyIdNwRQza5Pi1xQ2cq4",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"payment-method",
+										"retrieve"
+									],
+									"query": [
+										{
+											"key": "payment_method",
+											"value": "pm_1FKFuyIdNwRQza5Pi1xQ2cq4",
+											"description": "id of payment method"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update payment method",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "payment_method",
+											"value": "pm_1FKFuyIdNwRQza5Pi1xQ2cq4",
+											"description": "id of payment method",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[name]",
+											"value": "Ahihi",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[email]",
+											"value": "vanbakhanh+1@gmail.com",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[phone]",
+											"value": "12345678910",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][city]",
+											"value": "Quang Nam",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][country]",
+											"value": "VN",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][line1]",
+											"value": "",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][line2]",
+											"value": "",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][postal_code]",
+											"value": "550000",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "billing_details[address][state]",
+											"value": "",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "card[exp_month]",
+											"value": "12",
+											"description": "optional",
+											"type": "text"
+										},
+										{
+											"key": "card[exp_year]",
+											"value": "21",
+											"description": "optional",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/payment-method/update",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"payment-method",
+										"update"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Attach payment method",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "payment_method",
+											"value": "pm_1FKFuyIdNwRQza5Pi1xQ2cq4",
+											"description": "id of payment method",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/payment-method/attach",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"payment-method",
+										"attach"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Detach payment method",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "payment_method",
+											"value": "pm_1FKcKuIdNwRQza5PLPXfWPQ7",
+											"description": "id of payment method",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/payment-method/detach",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"payment-method",
+										"detach"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Subscription",
+					"item": [
+						{
+							"name": "Create subscription",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "subscription",
+											"value": "main",
+											"description": "main or primary",
+											"type": "text"
+										},
+										{
+											"key": "plan_id",
+											"value": "plan_FiV8Wd62Z3qXDI",
+											"description": "plan_FkhHfhE2G0FNCt, plan_FkhH4xHf3YbAAZ",
+											"type": "text"
+										},
+										{
+											"key": "payment_method",
+											"value": "pm_1FKFuyIdNwRQza5Pi1xQ2cq4",
+											"description": "id of payment method",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/api/payment/subscription/create",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"payment",
+										"subscription",
+										"create"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Web-app",
+			"item": [
+				{
+					"name": "Auth",
+					"item": [
+						{
+							"name": "Login",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "admin@email.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "12345678",
+											"type": "text"
+										},
+										{
+											"key": "client_id",
+											"value": "2",
+											"description": "2",
+											"type": "text"
+										},
+										{
+											"key": "client_secret",
+											"value": "fPUYeo8edwL2P6IAWBDxXbhkisXRhqFzD8raT0pC",
+											"description": "fPUYeo8edwL2P6IAWBDxXbhkisXRhqFzD8raT0pC",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/api/login",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"api",
+										"login"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "List & Search",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/api/users?",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"api",
+										"users"
+									],
+									"query": [
+										{
+											"key": "profile.last_name",
+											"value": "Michelle",
+											"disabled": true
+										},
+										{
+											"key": "search",
+											"value": "profile.first_name:Leanne",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "first_name",
+											"value": "Vuong",
+											"type": "text"
+										},
+										{
+											"key": "last_name",
+											"value": "Huynh",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"description": "1: active, 0: ina",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "khanh@email.com",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/api/users",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"api",
+										"users"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Delete",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/users/21",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"users",
+										"21"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "profile[first_name]",
+											"value": "Diem",
+											"type": "text"
+										},
+										{
+											"key": "profile[last_name]",
+											"value": "Ho",
+											"type": "text"
+										},
+										{
+											"key": "status",
+											"value": "1",
+											"type": "text"
+										},
+										{
+											"key": "_method",
+											"value": "PUT",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{url}}/admin/api/users/8",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"api",
+										"users",
+										"8"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Show",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{url}}/admin/api/users/1",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"api",
+										"users",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
