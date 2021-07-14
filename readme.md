@@ -50,6 +50,8 @@ Verify the deployment by navigating to your server address in your preferred bro
 https://127.0.0.1/
 ```
 
+Admin account: admin@email.com/12345678
+
 ## Design pattern
 
  `UI -> Controller -> Service -> Repository -> Model/Database`
