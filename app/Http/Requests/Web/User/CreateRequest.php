@@ -41,16 +41,6 @@ class CreateRequest extends FormRequest
                 'max:255',
                 'unique:users',
             ],
-            'password' => [
-                'required',
-                'string',
-                'min:8',
-                'max:16',
-            ],
-            'password_confirmation' => [
-                'required',
-                'same:password',
-            ],
         ];
     }
 }

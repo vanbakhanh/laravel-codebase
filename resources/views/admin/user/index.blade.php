@@ -51,9 +51,11 @@
                             <td>
                                 <div class="text-center" style="display: flex">
                                     <a href="{{ route('admin.user.edit', [ 'user' => $user->id ]) }}" class="btn btn-sm"><i class="fas fa-edit"></i></a>
-                                    {{ Form::open(['route' => ['admin.user.destroy', $user->id], 'method' => 'delete']) }}
-                                        <button type="submit" class="btn btn-sm" onclick="return confirm('{{trans('labels.general.confirmed_delete') }}');"><i class="fas fa-trash-alt"></i></button>
-                                    {{ Form::close() }}
+                                    <form action="{{ route('admin.user.destroy', ['user' => $user->id])  }}" method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <button type="submit" class="btn btn-sm" onclick="return confirm(`{{ __('labels.general.confirmed_delete') }}`);"><i class="fas fa-trash-alt"></i></button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

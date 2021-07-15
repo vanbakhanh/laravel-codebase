@@ -16,7 +16,7 @@
                 @include("admin.user.form")
             </div>
             <div class="card-footer">
-                <button class="btn btn-primary btn-md" type="submit">Update</button>
+                <button class="btn btn-primary btn-md" type="submit">{{ __('labels.general.buttons.update') }}</button>
             </div>
         </form>
     </div>
