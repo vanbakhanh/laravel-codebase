@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,12 +22,13 @@
     {{ Html::style(mix('css/app.css')) }}
     {{ Html::style(mix('css/admin/app.css')) }}
 </head>
-<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+
+<body class="hold-transition sidebar-mini">
     <div class="wrapper" id="app">
         <!-- Navbar -->
         @include('admin.common.header')
         <!-- /.navbar -->
-        
+
         <!-- Main Sidebar Container -->
         @include('admin.common.left')
 
@@ -35,32 +37,38 @@
             <!-- Content Header (Page header) -->
             {{-- @include('admin.common.breadcrumb') --}}
             <div class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                            </div><!-- /.col -->
-                            <div class="col-sm-6">
-                                <ol class="breadcrumb float-sm-right">
-                                    @yield('breadcrumb')
-                                </ol>
-                            </div><!-- /.col -->
-                        </div><!-- /.row -->
-                    </div><!-- /.container-fluid -->
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0">Dashboard</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                @yield('breadcrumb')
+                            </ol>
+                        </div>
+                    </div>
                 </div>
+            </div>
             <!-- /.content-header -->
 
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid" style="padding-bottom: 30px;">
-                    <!-- /.row -->
+                <div class="container-fluid">
                     @include('admin.common.messages')
                     @yield('content')
-                    <!-- /.row -->
-                </div><!--/. container-fluid -->
+                </div>
             </section>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3 control-sidebar-content"></div>
+        </aside>
+        <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
         @include('admin.common.footer')
@@ -68,4 +76,5 @@
     <!-- ./wrapper -->
     @yield('scripts')
 </body>
+
 </html>
