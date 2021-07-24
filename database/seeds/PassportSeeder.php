@@ -17,7 +17,7 @@ class PassportSeeder extends Seeder
             [
                 'id' => 1,
                 'user_id' => '',
-                'name' => 'Onthicongchuc Personal Access Client',
+                'name' => 'Codebase Personal Access Client',
                 'secret' => 'H7Y4j1Thmd5Zlwc0qgIyULcaQ3arc9J3rRHnr3HI',
                 'redirect' => 'http://localhost',
                 'personal_access_client' => 1,
@@ -29,7 +29,7 @@ class PassportSeeder extends Seeder
             [
                 'id' => 2,
                 'user_id' => '',
-                'name' => 'Onthicongchuc Password Grant Client',
+                'name' => 'Codebase Password Grant Client',
                 'secret' => 'YOWj2ITAD2lH5u6GwXyGpsfyffOWxVKWlZl7ixxR',
                 'redirect' => 'http://localhost',
                 'personal_access_client' => 0,
