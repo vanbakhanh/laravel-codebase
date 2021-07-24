@@ -22,22 +22,18 @@ abstract class AbstractService
         DB::beginTransaction();
 
         try {
-            if (is_callable($callback)) {
-                $data = call_user_func_array($callback, []);
-            }
+            $data = call_user_func_array($callback, []);
 
             DB::commit();
 
             return $data;
-        }
-        catch (QueryException $exception) {
+        } catch (QueryException $exception) {
             Log::error($exception->getMessage());
 
             DB::rollBack();
-            
+
             throw new Exception($exception->getMessage());
-        }
-        catch (Exception $exception) {
+        } catch (Exception $exception) {
             Log::error($exception->getMessage());
 
             DB::rollBack();

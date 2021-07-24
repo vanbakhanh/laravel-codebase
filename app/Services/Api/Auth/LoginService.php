@@ -46,7 +46,7 @@ class LoginService extends AbstractService
         ]);
 
         if ($isAuthenticated) {
-            return $this->transaction(function () {
+            return $this->transaction(function () use ($data) {
                 $response = $this->passportService->passwordGrantToken($data);
                 $response->user = user()->load('profile');
 

@@ -22,7 +22,7 @@ class PassportService
     }
 
     /**
-     * Handle reponse and exception.
+     * Handle response and exception.
      *
      * @param callable $request
      * @return Response
