@@ -34,8 +34,3 @@ Route::group(['middleware' => 'auth'], function () {
 
 // Video/Audio player
 Route::get('file/{id}', 'FileController@show')->name('file.show');
-
-/*
- * Admin Routes
- */
-require_once __DIR__ . '/admin/web.php';

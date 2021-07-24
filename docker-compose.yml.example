@@ -1,9 +1,8 @@
 version: "3.1"
 services:
-
-  webserver:
+  nginx:
     image: nginx:alpine
-    container_name: codebase-webserver
+    container_name: codebase-nginx
     working_dir: /application
     volumes:
       - .:/application
@@ -12,15 +11,14 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    depends_on: 
-      - php-fpm
-      - mysql
+    depends_on:
+      - laravel
       - redis
 
-  php-fpm:
+  laravel:
     image: codebase
     build: docker/php-fpm
-    container_name: codebase-php-fpm
+    container_name: codebase-laravel
     working_dir: /application
     volumes:
       - .:/application

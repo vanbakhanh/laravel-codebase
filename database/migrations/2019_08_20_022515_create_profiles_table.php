@@ -17,7 +17,7 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->index();
             $table->string('first_name');
             $table->string('last_name')->nullable();
             $table->string('avatar')->nullable();
@@ -33,6 +33,10 @@ class CreateProfilesTable extends Migration
             $table->string('state')->nullable();
             $table->string('zip_code')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 
