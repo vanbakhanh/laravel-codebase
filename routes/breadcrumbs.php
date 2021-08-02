@@ -17,3 +17,31 @@ Breadcrumbs::for('user-create', function ($trail) {
     $trail->parent('user');
     $trail->push('Create', route('admin.user.create'));
 });
+
+Breadcrumbs::for('role', function ($trail) {
+    $trail->push('Role', route('admin.role.index'));
+});
+
+Breadcrumbs::for('role-edit', function ($trail, $role) {
+    $trail->parent('role');
+    $trail->push('Edit', route('admin.role.edit', ['role' => $role->id]));
+});
+
+Breadcrumbs::for('role-create', function ($trail) {
+    $trail->parent('role');
+    $trail->push('Create', route('admin.role.create'));
+});
+
+Breadcrumbs::for('permission', function ($trail) {
+    $trail->push('Permission', route('admin.permission.index'));
+});
+
+Breadcrumbs::for('permission-edit', function ($trail, $permission) {
+    $trail->parent('permission');
+    $trail->push('Edit', route('admin.permission.edit', ['permission' => $permission->id]));
+});
+
+Breadcrumbs::for('permission-create', function ($trail) {
+    $trail->parent('permission');
+    $trail->push('Create', route('admin.permission.create'));
+});

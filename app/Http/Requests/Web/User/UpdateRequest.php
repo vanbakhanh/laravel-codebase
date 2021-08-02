@@ -34,6 +34,9 @@ class UpdateRequest extends FormRequest
                 'string',
                 'max:255',
             ],
+            'roles' => [
+                'array',
+            ],
         ];
     }
 }

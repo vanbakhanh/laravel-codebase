@@ -4,9 +4,8 @@ namespace App\Services\Web\User;
 
 use App\Repositories\Contracts\UserRepository;
 use App\Services\AbstractService;
-use Auth;
 
-class UpdateService extends AbstractService
+class StoreService extends AbstractService
 {
     /**
      * @var UserRepository
@@ -25,20 +24,23 @@ class UpdateService extends AbstractService
 
     public function handle($request)
     {
-        $user = $this->repository->find($request->route('user'));
-        $data = $request->only($this->repository->getFillable());
-        $data['status'] = $request->get('status') ?: config('model.user.status.inactive');
+        $input = $request->only($this->repository->getFillable());
+        $input['status'] = $request->get('status') ?: config('model.user.status.inactive');
+        $password = random_password();
+        $input['password'] = $password;
         $roles = $request->only('roles');
 
-        return $this->transaction(function () use ($request, $user, $data, $roles) {
-            $user->update($data);
+        return $this->transaction(function () use ($request, $input, $password, $roles) {
+            $user = $this->repository->create($input);
 
-            $user->profile()->update($request->only([
+            $user->profile()->create($request->only([
                 'first_name',
                 'last_name',
             ]));
 
             $user->syncRoles($roles);
+
+            $user->sendEmailGeneratePasswordNotification($password);
 
             return $user;
         });

@@ -27,7 +27,11 @@ class DestroyService extends AbstractService
     {
         return $this->transaction(function () use ($request) {
             $user = $this->repository->find($request->route('user'));
-            
+
+            if ($user->is(user())) {
+                return false;
+            }
+
             $user->profile()->delete();
             return $user->delete();
         });

@@ -90,12 +90,12 @@
                                 <input type="file" class="custom-file-input @error('avatar') is-invalid @enderror"
                                     id="avatarUpload avatar" name="avatar" onchange="previewAvatar(this)">
                                 <label class="custom-file-label" for="avatarUpload">Choose image</label>
+                                @error('avatar')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-                            @error('avatar')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
 
                             <div class="row mt-3">
                                 <div class="col-md-3">

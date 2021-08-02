@@ -1,15 +1,15 @@
 @extends ('admin.layouts.app')
 
 @section('breadcrumb')
-    {{ Breadcrumbs::render('user') }}
+    {{ Breadcrumbs::render('permission') }}
 @endsection
 
 @section('content')
     <div class="card">
         <div class="card-header">
-            <h3 class="card-title">{{ trans('labels.users.management') }}</h3>
+            <h3 class="card-title">{{ trans('labels.permissions.management') }}</h3>
             <div class="card-tools">
-                <a href="{{ route('admin.user.create') }}"><i class="fas fa-plus"></i></a>
+                <a href="{{ route('admin.permission.create') }}"><i class="fas fa-plus"></i></a>
                 {{-- <div class="input-group input-group-sm" style="width: 150px;">
                     <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
                     <div class="input-group-append">
@@ -25,33 +25,24 @@
                 <tr>
                     <th>{{ trans('labels.general.id') }}</th>
                     <th>{{ trans('labels.general.name') }}</th>
-                    <th>{{ trans('labels.general.email') }}</th>
-                    <th>{{ trans('labels.general.status') }}</th>
+                    <th>{{ trans('labels.general.guard_name') }}</th>
                     <th>{{ trans('labels.general.created_at') }}</th>
                     <th>{{ trans('labels.general.last_updated') }}</th>
                     <th style="width: 40px">{{ trans('labels.general.actions') }}</th>
                 </tr>
                 </thead>
                 <tbody>
-                    @foreach ($users as $user)
+                    @foreach ($permissions as $permission)
                         <tr>
-                            <td>{{ $user->id }}</td>
-                            <td>{{ $user->profile->fullName }}</td>
-                            <td>{{ $user->email }}</td>
-                            <td>
-                                <div class="form-group">
-                                    <div class="custom-control custom-switch custom-switch-off-danger custom-switch-on-success">
-                                        <input type="checkbox" class="custom-control-input" disabled id="active" name="status" value="{{ config('model.user.status.active') }}" {{ isset($user) && $user->status === config('model.user.status.active') ? 'checked' : '' }}>
-                                        <label class="custom-control-label" for="active"></label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>{{ format_date($user->created_at) }}</td>
-                            <td>{{ format_date($user->updated_at) }}</td>
+                            <td>{{ $permission->id }}</td>
+                            <td>{{ $permission->name }}</td>
+                            <td>{{ $permission->guard_name }}</td>
+                            <td>{{ format_date($permission->created_at) }}</td>
+                            <td>{{ format_date($permission->updated_at) }}</td>
                             <td>
                                 <div class="text-center d-flex">
-                                    <a href="{{ route('admin.user.edit', [ 'user' => $user->id ]) }}" class="btn btn-sm"><i class="fas fa-edit"></i></a>
-                                    <form action="{{ route('admin.user.destroy', ['user' => $user->id])  }}" method="post">
+                                    <a href="{{ route('admin.permission.edit', [ 'permission' => $permission->id ]) }}" class="btn btn-sm"><i class="fas fa-edit"></i></a>
+                                    <form action="{{ route('admin.permission.destroy', ['permission' => $permission->id])  }}" method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
                                         <button type="submit" class="btn btn-sm" onclick="return confirm(`{{ __('labels.general.confirm_delete') }}`);"><i class="fas fa-trash-alt"></i></button>
@@ -64,8 +55,5 @@
             </table>
         </div>
         <!-- /.card-body -->
-        <div class="card-footer clearfix">
-            {{ $users->links() }}
-        </div>
     </div>
 @endsection

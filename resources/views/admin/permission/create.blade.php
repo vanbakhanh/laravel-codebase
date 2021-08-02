@@ -1,18 +1,18 @@
 @extends ('admin.layouts.app')
 
 @section('breadcrumb')
-{{ Breadcrumbs::render('user-create') }}
+{{ Breadcrumbs::render('permission-create') }}
 @endsection
 
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">{{ __('labels.users.create') }}</h3>
+            <h3 class="card-title">{{ __('labels.permissions.create') }}</h3>
         </div>
-        <form action="{{ route('admin.user.store')  }}" method="post">
+        <form action="{{ route('admin.permission.store')  }}" method="post">
             {{ csrf_field() }}
             <div class="card-body">
-                @include("admin.user.form")
+                @include("admin.permission.form")
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary btn-md" type="submit">{{ __('labels.general.save') }}</button>

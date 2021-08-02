@@ -1,19 +1,19 @@
 @extends ('admin.layouts.app')
 
 @section('breadcrumb')
-    {{ Breadcrumbs::render('user-edit', $user) }}
+    {{ Breadcrumbs::render('permission-edit', $permission) }}
 @endsection
 
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">{{ __('labels.users.edit') }}</h3>
+            <h3 class="card-title">{{ __('labels.permissions.edit') }}</h3>
         </div>
-        <form action="{{ route('admin.user.update', ['user' => $user->id])  }}" method="post">
+        <form action="{{ route('admin.permission.update', ['permission' => $permission->id])  }}" method="post">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="card-body">
-                @include("admin.user.form")
+                @include("admin.permission.form")
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary btn-md" type="submit">{{ __('labels.general.update') }}</button>

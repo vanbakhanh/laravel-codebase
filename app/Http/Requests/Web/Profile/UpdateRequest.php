@@ -39,7 +39,7 @@ class UpdateRequest extends FormRequest
                 'required',
                 'image',
                 'mimes:jpeg,png,jpg',
-                'file_extension:' . config('constants.allow_file_extension'),
+                'max:1024',
             ],
             'address' => [
                 'nullable',

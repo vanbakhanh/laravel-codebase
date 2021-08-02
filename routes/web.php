@@ -11,13 +11,13 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home.index')->middleware('verified');
+Route::get('/', 'HomeController@index')->name('home.index')->middleware('verified');
 
 Route::get('login/{provider}', 'Auth\SocialController@redirectToProvider')->name('social.login');
 Route::get('login/{provider}/callback', 'Auth\SocialController@handleProviderCallback');

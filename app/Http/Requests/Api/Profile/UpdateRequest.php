@@ -39,6 +39,7 @@ class UpdateRequest extends AbstractRequest
                 'required',
                 'image',
                 'mimes:jpeg,png,jpg',
+                'max:1024',
             ],
             'phone' => [
                 'nullable',

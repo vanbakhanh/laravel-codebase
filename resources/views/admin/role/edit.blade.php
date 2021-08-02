@@ -1,19 +1,19 @@
 @extends ('admin.layouts.app')
 
 @section('breadcrumb')
-    {{ Breadcrumbs::render('user-edit', $user) }}
+    {{ Breadcrumbs::render('role-edit', $role) }}
 @endsection
 
 @section('content')
     <div class="card card-primary">
         <div class="card-header">
-            <h3 class="card-title">{{ __('labels.users.edit') }}</h3>
+            <h3 class="card-title">{{ __('labels.roles.edit') }}</h3>
         </div>
-        <form action="{{ route('admin.user.update', ['user' => $user->id])  }}" method="post">
+        <form action="{{ route('admin.role.update', ['role' => $role->id])  }}" method="post">
             {{ csrf_field() }}
             {{ method_field('PUT') }}
             <div class="card-body">
-                @include("admin.user.form")
+                @include("admin.role.form")
             </div>
             <div class="card-footer">
                 <button class="btn btn-primary btn-md" type="submit">{{ __('labels.general.update') }}</button>
@@ -23,14 +23,13 @@
 @endsection
 
 @section('scripts')
-    <script> 
-        var changePassword = function () {
+    <script>
+        var changePassword = function() {
 
             if ($("#change-password").is(":checked")) {
                 $('#password').prop('disabled', false);
                 $('#newPasswordConfirm').prop('disabled', false);
-            }
-            else {
+            } else {
                 $('#password').prop('disabled', 'disabled');
                 $('#newPasswordConfirm').prop('disabled', 'disabled');
             }

@@ -3,33 +3,27 @@
 namespace App\Http\Controllers\Admin\Web;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Web\User\CreateRequest;
-use App\Http\Requests\Web\User\UpdateRequest;
-use App\Services\Api\Admin\User\CreateService as UserCreateService;
+use App\Http\Requests\Web\Role\CreateRequest;
+use App\Http\Requests\Web\Role\UpdateRequest;
 use Illuminate\Http\Request;
-use App\Services\Web\User\ListService;
-use App\Services\Web\User\StoreService;
-use App\Services\Web\User\EditService;
-use App\Services\Web\User\DestroyService;
-use App\Services\Web\User\UpdateService;
-use App\Services\Web\User\CreateService;
+use App\Services\Web\Role\ListService;
+use App\Services\Web\Role\CreateService;
+use App\Services\Web\Role\EditService;
+use App\Services\Web\Role\DestroyService;
+use App\Services\Web\Role\UpdateService;
+use App\Services\Web\Role\StoreService;
 
-class UserController extends Controller
+class RoleController extends Controller
 {
-    /**
-     * @var CreateService
-     */
-    private $createService;
-
     /**
      * @var ListService
      */
     private $listService;
 
     /**
-     * @var StoreService
+     * @var CreateService
      */
-    private $storeService;
+    private $createService;
 
     /**
      * @var EditService
@@ -47,24 +41,29 @@ class UserController extends Controller
     private $destroyService;
 
     /**
+     * @var StoreService
+     */
+    private $storeService;
+
+    /**
      * Create a new controller instance.
      *
-     * @param UserService $userService
+     * @param RoleService $roleService
      */
     public function __construct(
-        CreateService $createService,
         ListService $listService,
-        StoreService $storeService,
+        CreateService $createService,
         EditService $editService,
         UpdateService $updateService,
-        DestroyService $destroyService
+        DestroyService $destroyService,
+        StoreService $storeService
     ) {
-        $this->createService = $createService;
         $this->listService = $listService;
-        $this->storeService = $storeService;
+        $this->createService = $createService;
         $this->editService = $editService;
         $this->updateService = $updateService;
         $this->destroyService = $destroyService;
+        $this->storeService = $storeService;
     }
 
     /**
@@ -75,9 +74,9 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->listService->handle($request);
+        $roles = $this->listService->handle($request);
 
-        return view('admin.user.index', compact('users'));
+        return view('admin.role.index', compact('roles'));
     }
 
     /**
@@ -88,7 +87,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.user.create', $this->createService->handle($request));
+        return view('admin.role.create', $this->createService->handle($request));
     }
 
     /**
@@ -110,7 +109,7 @@ class UserController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request, $id)
@@ -122,19 +121,19 @@ class UserController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function edit(Request $request, $id)
     {
-        return view('admin.user.edit', $this->editService->handle($request));
+        return view('admin.role.edit', $this->editService->handle($request));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateRequest $request, $id)
@@ -150,7 +149,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\Role  $role
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request)

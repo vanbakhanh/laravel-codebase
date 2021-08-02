@@ -3,10 +3,10 @@
 namespace App\Services\Web\User;
 
 use App\Repositories\Contracts\UserRepository;
-use App\Services\AbstractService;
 use App\Repositories\Contracts\RoleRepository;
+use App\Services\AbstractService;
 
-class CreateService extends AbstractService
+class EditService extends AbstractService
 {
     /**
      * @var UserRepository
@@ -22,7 +22,6 @@ class CreateService extends AbstractService
      * UserService constructor.
      *
      * @param UserRepository $userRepository
-     * @param RoleRepository $roleRepository
      */
     public function __construct(
         UserRepository $userRepository,
@@ -34,8 +33,10 @@ class CreateService extends AbstractService
 
     public function handle($request)
     {
+        $user = $this->userRepository->find($request->route('user'));
         $roles = $this->roleRepository->pluck('name', 'id');
+        $gaveRole = $user->roles()->pluck('name', 'id');
 
-        return compact('roles');
+        return compact('user', 'roles', 'gaveRole');
     }
 }
