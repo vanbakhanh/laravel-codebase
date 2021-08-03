@@ -40,8 +40,8 @@ server {
         deny all;
     }
 
-    access_log /var/log/nginx/codebase_access.log;
-    error_log  /var/log/nginx/codebase_error.log;
+    access_log /var/log/nginx/access.log;
+    error_log  /var/log/nginx/error.log;
 }
 
 server {
