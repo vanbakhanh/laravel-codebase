@@ -1,6 +1,6 @@
 # Codebase Server
 
-Codebase is a web application base on Laravel Framework 6.0 with expressive, elegant syntax.
+Codebase is a web application base on Laravel Framework 8.x with expressive, elegant syntax.
 
 ## Hosts within environment
 
