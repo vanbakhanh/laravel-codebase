@@ -26,7 +26,7 @@ class VerifyEmailNotification extends VerifyEmail
             ['id' => $notifiable->getKey()]
         );
 
-        $clientUrl = str_replace(env('APP_URL') . '/api', env('CLIENT_APP_URL'), $url);
+        $clientUrl = str_replace(env('APP_URL') . '/api', env('APP_CLIENT_URL'), $url);
 
         return $clientUrl;
     }

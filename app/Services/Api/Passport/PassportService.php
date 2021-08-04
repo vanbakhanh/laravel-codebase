@@ -56,7 +56,7 @@ class PassportService
     public function passwordGrantToken(array $data, $scope = '')
     {
         return $this->request(function () use ($data, $scope) {
-            return $this->http->post(env('APP_URL') . '/oauth/token', [
+            return $this->http->post(env('APP_PASSPORT_URL') . '/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'password',
                     'client_id' => $data['client_id'],
@@ -78,7 +78,7 @@ class PassportService
     public function refreshGrantToken(array $data)
     {
         return $this->request(function () use ($data) {
-            return $this->http->post(env('APP_URL') . '/oauth/token', [
+            return $this->http->post(env('APP_PASSPORT_URL') . '/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'refresh_token',
                     'refresh_token' => $data['refresh_token'],
@@ -100,7 +100,7 @@ class PassportService
     public function socialGrantToken($user, $client, $scope = '')
     {
         return $this->request(function () use ($user, $client, $scope) {
-            return $this->http->post(env('APP_URL') . '/oauth/token', [
+            return $this->http->post(env('APP_PASSPORT_URL') . '/oauth/token', [
                 'form_params' => [
                     'grant_type' => 'social',
                     'client_id' => $client['client_id'],
