@@ -36,11 +36,11 @@ $ composer install
 Run these commands to generate application configurations.
 
 ```sh
-$ chown -R www-data:www-data /application/storage /application/bootstrap/cache
 $ cp .env.example .env
 $ php artisan key:generate
 $ php artisan storage:link
 $ php artisan migrate --seed
+$ chown -R www-data:www-data /application/storage /application/bootstrap/cache
 ```
 
 Verify the deployment by navigating to your server address in your preferred browser.

@@ -30,7 +30,6 @@ class CreateRequest extends FormRequest
                 'unique:roles',
             ],
             'guard_name' => [
-                'required',
                 'string',
             ],
             'permissions' => [
