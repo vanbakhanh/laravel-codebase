@@ -21,20 +21,3 @@
         </form>
     </div>
 @endsection
-
-@section('scripts')
-    <script>
-        var changePassword = function() {
-
-            if ($("#change-password").is(":checked")) {
-                $('#password').prop('disabled', false);
-                $('#newPasswordConfirm').prop('disabled', false);
-            } else {
-                $('#password').prop('disabled', 'disabled');
-                $('#newPasswordConfirm').prop('disabled', 'disabled');
-            }
-        };
-        $(changePassword);
-        $("#change-password").change(changePassword);
-    </script>
-@endsection

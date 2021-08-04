@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\User\CreateRequest;
 use App\Http\Requests\Web\User\UpdateRequest;
-use App\Services\Api\Admin\User\CreateService as UserCreateService;
 use Illuminate\Http\Request;
 use App\Services\Web\User\ListService;
 use App\Services\Web\User\StoreService;
