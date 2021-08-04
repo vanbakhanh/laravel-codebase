@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\Validators\FileExtensionValidator;
+use Illuminate\Pagination\Paginator;
 use Validator;
 
 class AppServiceProvider extends ServiceProvider
@@ -27,8 +28,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Validator::resolver(function($translator, $data, $rules, $messages)
-        {
+        Paginator::useBootstrap();
+
+        Validator::resolver(function ($translator, $data, $rules, $messages) {
             return new FileExtensionValidator($translator, $data, $rules, $messages);
         });
     }
