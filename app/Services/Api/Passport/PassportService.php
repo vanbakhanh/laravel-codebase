@@ -36,12 +36,6 @@ class PassportService
 
             return json_decode($response->getBody());
         } catch (RequestException $exception) {
-            if ($exception->hasResponse()) {
-                $response = json_decode($exception->getResponse()->getBody());
-
-                throw new ApiException($response->message);
-            }
-
             throw new ApiException($exception->getMessage());
         }
     }

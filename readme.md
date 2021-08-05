@@ -40,6 +40,7 @@ $ cp .env.example .env
 $ php artisan key:generate
 $ php artisan storage:link
 $ php artisan migrate --seed
+$ php artisan passport:keys
 $ chown -R www-data:www-data /application/storage /application/bootstrap/cache
 ```
 
