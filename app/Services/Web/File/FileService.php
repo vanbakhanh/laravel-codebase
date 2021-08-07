@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Services\Web\File;
 
 use App\Repositories\Contracts\FileRepository;
 use App\Services\AbstractService;
 
-class ShowService extends AbstractService
+class FileService extends AbstractService
 {
     /**
      * @var FileRepository
@@ -12,7 +13,7 @@ class ShowService extends AbstractService
     private $repository;
 
     /**
-     * CreateService constructor.
+     * FileService constructor.
      * @param FileRepository $repository
      */
     public function __construct(FileRepository $repository)
@@ -27,7 +28,7 @@ class ShowService extends AbstractService
      *
      * @throws \Throwable
      */
-    public function handle($request, $fileId)
+    public function show($request, $fileId)
     {
         return $this->repository->find($fileId);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\Api\FcmNotification;
+namespace App\Services\Web\FcmNotification;
 
 use App\Repositories\Contracts\FcmNotificationRepository;
 use App\Services\AbstractService;
@@ -58,31 +58,34 @@ class FcmNotificationService extends AbstractService
     }
 
     /**
-     * Get list all notification.
-     *
+     * List notification.
+     * 
      * @return array
      */
     public function list($request)
     {
-        $model = $this->repository->makeModel()
-            ->with(['senderProfile'])
-            ->where('receiver_id', user()->id);
+        $model = $this->repository
+            ->makeModel()
+            ->with('senderProfile')
+            ->latest();
+
+        if (isset($request['receiver_id'])) {
+            $model = $model->where('receiver_id', $request['receiver_id']);
+        }
 
         if (isset($request['status'])) {
             $model = $model->where('status', $request['status']);
         }
 
-        $notifications = $model->latest()->paginate(config('constants.pagination'));
-
-        return $notifications;
+        return $model->paginate(config('constants.pagination'));
     }
 
     /**
-     * Count unread notifications.
+     * Count notification.
      * 
      * @return int
      */
-    public function countUnread($request)
+    public function count($request)
     {
         return $this->repository
             ->makeModel()

@@ -6,7 +6,7 @@ use App\Repositories\Contracts\UserRepository;
 use App\Services\AbstractService;
 use Hash;
 
-class UpdateService extends AbstractService
+class ChangePasswordService extends AbstractService
 {
     /**
      * @var UserRepository
@@ -14,7 +14,7 @@ class UpdateService extends AbstractService
     private $repository;
 
     /**
-     * UpdateService constructor.
+     * ChangePasswordService constructor.
      *
      * @param UserRepository $repository
      */

@@ -6,64 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Role\CreateRequest;
 use App\Http\Requests\Web\Role\UpdateRequest;
 use Illuminate\Http\Request;
-use App\Services\Web\Role\ListService;
-use App\Services\Web\Role\CreateService;
-use App\Services\Web\Role\EditService;
-use App\Services\Web\Role\DestroyService;
-use App\Services\Web\Role\UpdateService;
-use App\Services\Web\Role\StoreService;
+use App\Services\Web\Role\RoleService;
 
 class RoleController extends Controller
 {
     /**
-     * @var ListService
+     * @var RoleService
      */
-    private $listService;
-
-    /**
-     * @var CreateService
-     */
-    private $createService;
-
-    /**
-     * @var EditService
-     */
-    private $editService;
-
-    /**
-     * @var UpdateService
-     */
-    private $updateService;
-
-    /**
-     * @var DestroyService
-     */
-    private $destroyService;
-
-    /**
-     * @var StoreService
-     */
-    private $storeService;
+    private $roleService;
 
     /**
      * Create a new controller instance.
      *
      * @param RoleService $roleService
      */
-    public function __construct(
-        ListService $listService,
-        CreateService $createService,
-        EditService $editService,
-        UpdateService $updateService,
-        DestroyService $destroyService,
-        StoreService $storeService
-    ) {
-        $this->listService = $listService;
-        $this->createService = $createService;
-        $this->editService = $editService;
-        $this->updateService = $updateService;
-        $this->destroyService = $destroyService;
-        $this->storeService = $storeService;
+    public function __construct(RoleService $roleService)
+    {
+        $this->roleService = $roleService;
     }
 
     /**
@@ -74,7 +33,7 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $roles = $this->listService->handle($request);
+        $roles = $this->roleService->list($request);
 
         return view('admin.role.index', compact('roles'));
     }
@@ -87,7 +46,7 @@ class RoleController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.role.create', $this->createService->handle($request));
+        return view('admin.role.create', $this->roleService->create($request));
     }
 
     /**
@@ -98,7 +57,7 @@ class RoleController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        if (!$this->storeService->handle($request)) {
+        if (!$this->roleService->store($request)) {
             return back()->withInput()->with('error', trans('notification.fail.create'));
         }
 
@@ -126,7 +85,7 @@ class RoleController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        return view('admin.role.edit', $this->editService->handle($request));
+        return view('admin.role.edit', $this->roleService->edit($request));
     }
 
     /**
@@ -138,7 +97,7 @@ class RoleController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        if (!$this->updateService->handle($request)) {
+        if (!$this->roleService->update($request)) {
             return back()->withInput()->with('error', trans('notification.fail.update'));
         }
 
@@ -154,7 +113,7 @@ class RoleController extends Controller
      */
     public function destroy(Request $request)
     {
-        if (!$this->destroyService->handle($request)) {
+        if (!$this->roleService->delete($request)) {
             return back()->withInput()->with('error', trans('notification.fail.delete'));
         }
 

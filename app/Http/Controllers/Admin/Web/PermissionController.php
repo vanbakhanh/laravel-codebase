@@ -6,64 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Permission\CreateRequest;
 use App\Http\Requests\Web\Permission\UpdateRequest;
 use Illuminate\Http\Request;
-use App\Services\Web\Permission\ListService;
-use App\Services\Web\Permission\CreateService;
-use App\Services\Web\Permission\EditService;
-use App\Services\Web\Permission\DestroyService;
-use App\Services\Web\Permission\UpdateService;
-use App\Services\Web\Permission\StoreService;
+use App\Services\Web\Permission\PermissionService;
 
 class PermissionController extends Controller
 {
     /**
-     * @var ListService
+     * @var PermissionService
      */
-    private $listService;
-
-    /**
-     * @var CreateService
-     */
-    private $createService;
-
-    /**
-     * @var EditService
-     */
-    private $editService;
-
-    /**
-     * @var UpdateService
-     */
-    private $updateService;
-
-    /**
-     * @var DestroyService
-     */
-    private $destroyService;
-
-    /**
-     * @var StoreService
-     */
-    private $storeService;
+    private $permissionService;
 
     /**
      * Create a new controller instance.
      *
      * @param PermissionService $permissionService
      */
-    public function __construct(
-        ListService $listService,
-        CreateService $createService,
-        EditService $editService,
-        UpdateService $updateService,
-        DestroyService $destroyService,
-        StoreService $storeService
-    ) {
-        $this->listService = $listService;
-        $this->createService = $createService;
-        $this->editService = $editService;
-        $this->updateService = $updateService;
-        $this->destroyService = $destroyService;
-        $this->storeService = $storeService;
+    public function __construct(PermissionService $permissionService)
+    {
+        $this->permissionService = $permissionService;
     }
 
     /**
@@ -74,7 +33,7 @@ class PermissionController extends Controller
      */
     public function index(Request $request)
     {
-        $permissions = $this->listService->handle($request);
+        $permissions = $this->permissionService->list($request);
 
         return view('admin.permission.index', compact('permissions'));
     }
@@ -98,7 +57,7 @@ class PermissionController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        if (!$this->storeService->handle($request)) {
+        if (!$this->permissionService->store($request)) {
             return back()->withInput()->with('error', trans('notification.fail.create'));
         }
 
@@ -126,7 +85,7 @@ class PermissionController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        $permission = $this->editService->handle($request);
+        $permission = $this->permissionService->edit($request);
 
         return view('admin.permission.edit', compact('permission'));
     }
@@ -140,7 +99,7 @@ class PermissionController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        if (!$this->updateService->handle($request)) {
+        if (!$this->permissionService->update($request)) {
             return back()->withInput()->with('error', trans('notification.fail.update'));
         }
 
@@ -156,7 +115,7 @@ class PermissionController extends Controller
      */
     public function destroy(Request $request)
     {
-        if (!$this->destroyService->handle($request)) {
+        if (!$this->permissionService->delete($request)) {
             return back()->withInput()->with('error', trans('notification.fail.delete'));
         }
 

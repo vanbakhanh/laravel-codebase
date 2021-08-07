@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Web\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Services\Web\User\ShowService;
+use App\Services\Web\User\UserService;
 use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Http\Request;
@@ -24,7 +24,7 @@ class VerificationController extends Controller
     use VerifiesEmails;
 
     /**
-     * @var showService
+     * @var UserService
      */
     private $showService;
 
@@ -40,9 +40,9 @@ class VerificationController extends Controller
      *
      * @return void
      */
-    public function __construct(ShowService $showService)
+    public function __construct(UserService $userService)
     {
-        $this->showService = $showService;
+        $this->userService = $userService;
         $this->middleware('auth')->only('resend');
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
@@ -58,7 +58,7 @@ class VerificationController extends Controller
     public function verify(Request $request)
     {
         $request->route()->setParameter('user', $request->route('id'));
-        $user = $this->showService->handle($request);
+        $user = $this->userService->show($request);
 
         if ($user->hasVerifiedEmail()) {
             return view('auth.verified');

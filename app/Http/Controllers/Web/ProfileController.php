@@ -4,34 +4,24 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\Profile\UpdateRequest;
-use App\Services\Web\Profile\ShowService;
-use App\Services\Web\Profile\UpdateService;
+use App\Services\Web\Profile\ProfileService;
 use Illuminate\Http\Request;
 
 class ProfileController extends Controller
 {
     /**
-     * @var UpdateService $updateService
+     * @var ProfileService $profileService
      */
-    private $updateService;
-
-    /**
-     * @var ShowService $showService
-     */
-    private $showService;
+    private $profileService;
 
     /**
      * Create a new controller instance.
      *
-     * @param UpdateService $updateService
-     * @param ShowService $showService
+     * @param ProfileService $profileService
      */
-    public function __construct(
-        UpdateService $updateService,
-        ShowService $showService
-    ) {
-        $this->updateService = $updateService;
-        $this->showService = $showService;
+    public function __construct(ProfileService $profileService)
+    {
+        $this->profileService = $profileService;
     }
 
     /**
@@ -84,7 +74,7 @@ class ProfileController extends Controller
      */
     public function edit(Request $request)
     {
-        $profile = $this->showService->handle($request);
+        $profile = $this->profileService->show($request);
 
         return view('profiles.edit', compact('profile'));
     }
@@ -97,7 +87,7 @@ class ProfileController extends Controller
      */
     public function update(UpdateRequest $request)
     {
-        if (!$this->updateService->handle($request)) {
+        if (!$this->profileService->update($request)) {
             return back()->withInput()->with('error', trans('notification.fail.update'));
         }
 

@@ -4,25 +4,24 @@ namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\ChangePassword\UpdateRequest;
-use App\Services\Web\ChangePassword\UpdateService;
-use Illuminate\Http\Request;
+use App\Services\Web\ChangePassword\ChangePasswordService;
 
 class ChangePasswordController extends Controller
 {
     /**
-     * @var UpdateService $updateService
+     * @var ChangePasswordService $changePasswordService
      */
-    private $updateService;
+    private $changePasswordService;
 
     /**
      * Create a new controller instance.
      *
-     * @param UpdateService $updateService
+     * @param ChangePasswordService $changePasswordService
      */
     public function __construct(
-        UpdateService $updateService
+        ChangePasswordService $changePasswordService
     ) {
-        $this->updateService = $updateService;
+        $this->changePasswordService = $changePasswordService;
     }
 
     /**
@@ -43,7 +42,7 @@ class ChangePasswordController extends Controller
      */
     public function update(UpdateRequest $request)
     {
-        if (!$this->updateService->handle($request)) {
+        if (!$this->changePasswordService->handle($request)) {
             return back()->withInput()->with('error', trans('passwords.incorrect'));
         }
 

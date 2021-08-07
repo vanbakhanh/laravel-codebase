@@ -3,24 +3,24 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
-use App\Services\Web\File\ShowService;
+use App\Services\Web\File\FileService;
 use Illuminate\Http\Request;
 use App\Http\Resources\FileResource;
 
 class FileController extends Controller
 {
     /**
-     * @var showService
+     * @var fileService
      */
-    private $showService;
+    private $fileService;
 
     /**
      * UserController constructor.
-     * @param UploadService $uploadService
+     * @param FileService $fileService
      */
-    public function __construct(ShowService $showService) 
+    public function __construct(FileService $fileService)
     {
-        $this->showService = $showService;
+        $this->fileService = $fileService;
     }
 
     /**
@@ -30,10 +30,12 @@ class FileController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $file = $this->showService->handle($request, $id);
-        if($request->ajax()) {
+        $file = $this->fileService->show($request, $id);
+
+        if ($request->ajax()) {
             return response()->success(new FileResource($file));
         }
+
         return view('file.show', compact('file'));
     }
 }

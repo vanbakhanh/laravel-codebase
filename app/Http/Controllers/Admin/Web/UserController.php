@@ -6,64 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Web\User\CreateRequest;
 use App\Http\Requests\Web\User\UpdateRequest;
 use Illuminate\Http\Request;
-use App\Services\Web\User\ListService;
-use App\Services\Web\User\StoreService;
-use App\Services\Web\User\EditService;
-use App\Services\Web\User\DestroyService;
-use App\Services\Web\User\UpdateService;
-use App\Services\Web\User\CreateService;
+use App\Services\Web\User\UserService;
 
 class UserController extends Controller
 {
     /**
-     * @var CreateService
+     * @var UserService
      */
-    private $createService;
-
-    /**
-     * @var ListService
-     */
-    private $listService;
-
-    /**
-     * @var StoreService
-     */
-    private $storeService;
-
-    /**
-     * @var EditService
-     */
-    private $editService;
-
-    /**
-     * @var UpdateService
-     */
-    private $updateService;
-
-    /**
-     * @var DestroyService
-     */
-    private $destroyService;
+    private $userService;
 
     /**
      * Create a new controller instance.
      *
      * @param UserService $userService
      */
-    public function __construct(
-        CreateService $createService,
-        ListService $listService,
-        StoreService $storeService,
-        EditService $editService,
-        UpdateService $updateService,
-        DestroyService $destroyService
-    ) {
-        $this->createService = $createService;
-        $this->listService = $listService;
-        $this->storeService = $storeService;
-        $this->editService = $editService;
-        $this->updateService = $updateService;
-        $this->destroyService = $destroyService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
     }
 
     /**
@@ -74,7 +33,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = $this->listService->handle($request);
+        $users = $this->userService->list($request);
 
         return view('admin.user.index', compact('users'));
     }
@@ -87,7 +46,7 @@ class UserController extends Controller
      */
     public function create(Request $request)
     {
-        return view('admin.user.create', $this->createService->handle($request));
+        return view('admin.user.create', $this->userService->create($request));
     }
 
     /**
@@ -98,7 +57,7 @@ class UserController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        if (!$this->storeService->handle($request)) {
+        if (!$this->userService->store($request)) {
             return back()->withInput()->with('error', trans('notification.fail.create'));
         }
 
@@ -126,7 +85,7 @@ class UserController extends Controller
      */
     public function edit(Request $request, $id)
     {
-        return view('admin.user.edit', $this->editService->handle($request));
+        return view('admin.user.edit', $this->userService->edit($request));
     }
 
     /**
@@ -138,7 +97,7 @@ class UserController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        if (!$this->updateService->handle($request)) {
+        if (!$this->userService->update($request)) {
             return back()->withInput()->with('error', trans('notification.fail.update'));
         }
 
@@ -154,7 +113,7 @@ class UserController extends Controller
      */
     public function destroy(Request $request)
     {
-        if (!$this->destroyService->handle($request)) {
+        if (!$this->userService->delete($request)) {
             return back()->withInput()->with('error', trans('notification.fail.delete'));
         }
 

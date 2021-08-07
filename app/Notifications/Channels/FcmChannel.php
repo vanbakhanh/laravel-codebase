@@ -2,24 +2,24 @@
 
 namespace App\Notifications\Channels;
 
-use App\Services\Web\FcmNotification\CreateService;
+use App\Services\Web\FcmNotification\FcmNotificationService;
 use Illuminate\Notifications\Notification;
 
 class FcmChannel
 {
     /**
-     * @var CreateService
+     * @var FcmNotificationService
      */
-    private $createFcmNotificationService;
+    private $fcmNotificationService;
 
     /**
      * FcmChannel constructor.
      *
-     * @param CreateService $createFcmNotificationService
+     * @param FcmNotificationService $fcmNotificationService
      */
-    public function __construct(CreateService $createFcmNotificationService)
+    public function __construct(FcmNotificationService $fcmNotificationService)
     {
-        $this->createFcmNotificationService = $createFcmNotificationService;
+        $this->fcmNotificationService = $fcmNotificationService;
     }
 
     /**
@@ -65,6 +65,6 @@ class FcmChannel
             'type' => $message->getData()['type'] ?? null,
         ];
 
-        $this->createFcmNotificationService->handle(request()->merge($notificationData));
+        $this->fcmNotificationService->create(request()->merge($notificationData));
     }
 }
