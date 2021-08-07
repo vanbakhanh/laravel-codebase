@@ -2,36 +2,25 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Profile\UpdateRequest;
-use App\Services\Api\Profile\UpdateService;
-use App\Services\Api\Profile\ShowService;
+use App\Services\Api\Profile\ProfileService;
 use Illuminate\Http\Request;
 
 class ProfileController extends AbstractController
 {
     /**
-     * @var UpdateService $updateService
+     * @var ProfileService $profileService
      */
-    private $updateService;
-
-    /**
-     * @var ShowService $showService
-     */
-    private $showService;
+    private $profileService;
 
     /**
      * Create a new controller instance.
      *
-     * @param UpdateService $updateService
-     * @param ShowService $showService
+     * @param ProfileService $profileService
      */
-    public function __construct(
-        UpdateService $updateService,
-        ShowService $showService
-    ) {
-        $this->updateService = $updateService;
-        $this->showService = $showService;
+    public function __construct(ProfileService $profileService)
+    {
+        $this->profileService = $profileService;
     }
 
     /**
@@ -42,7 +31,7 @@ class ProfileController extends AbstractController
      */
     public function show(Request $request)
     {
-        $this->apiData = $this->showService->handle($request);
+        $this->apiData = $this->profileService->show($request);
 
         return $this->success();
     }
@@ -56,7 +45,7 @@ class ProfileController extends AbstractController
      */
     public function update(UpdateRequest $request)
     {
-        $this->apiData = $this->updateService->handle($request);
+        $this->apiData = $this->profileService->update($request);
         $this->apiMessage = trans('notification.success.update');
 
         return $this->success();

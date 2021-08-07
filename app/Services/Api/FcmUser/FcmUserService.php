@@ -5,7 +5,7 @@ namespace App\Services\Api\FcmUser;
 use App\Repositories\Contracts\FcmUserRepository;
 use App\Services\AbstractService;
 
-class CreateService extends AbstractService
+class FcmUserService extends AbstractService
 {
     /**
      * @var FcmUserRepository
@@ -13,7 +13,7 @@ class CreateService extends AbstractService
     private $repository;
 
     /**
-     * CreateService constructor.
+     * FcmUserService constructor.
      *
      * @param FcmUserRepository $repository
      */
@@ -25,7 +25,7 @@ class CreateService extends AbstractService
     /**
      * Create fcm user.
      */
-    public function handle($request)
+    public function create($request)
     {
         $token = $request->get('fcm_token');
 
@@ -45,5 +45,17 @@ class CreateService extends AbstractService
         }
 
         return $fcmUser;
+    }
+
+    /**
+     * Delete fcm user.
+     */
+    public function delete($request)
+    {
+        $token = $request->get('fcm_token');
+
+        return $this->transaction(function () use ($token) {
+            return $this->repository->findWhere(['token' => $token])->delete();
+        });
     }
 }

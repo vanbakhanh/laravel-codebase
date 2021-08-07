@@ -7,7 +7,7 @@ use App\Exceptions\Api\UnauthorizedException;
 use App\Repositories\Contracts\ProfileRepository;
 use App\Services\AbstractService;
 
-class UpdateService extends AbstractService
+class ProfileService extends AbstractService
 {
     /**
      * @var ProfileRepository
@@ -15,7 +15,7 @@ class UpdateService extends AbstractService
     private $repository;
 
     /**
-     * UpdateService constructor.
+     * ProfileService constructor.
      *
      * @param ProfileRepository $repository
      */
@@ -30,7 +30,7 @@ class UpdateService extends AbstractService
      * @param Request $request
      * @return Response
      */
-    public function handle($request)
+    public function update($request)
     {
         $profile = $this->repository->findByField('user_id', user()->id)->first();
 
@@ -48,5 +48,16 @@ class UpdateService extends AbstractService
 
             throw new UnauthorizedException;
         });
+    }
+
+    /**
+     * Handle show user's profile.
+     *
+     * @param Request $request
+     * @return Response
+     */
+    public function show($request)
+    {
+        return $this->repository->with('user')->findByField('user_id', user()->id)->first();
     }
 }

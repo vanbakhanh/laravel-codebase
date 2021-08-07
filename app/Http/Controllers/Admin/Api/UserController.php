@@ -6,62 +6,24 @@ use App\Http\Controllers\Api\AbstractController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Admin\User\UpdateRequest;
 use App\Http\Requests\Api\Admin\User\CreateRequest;
-use App\Services\Api\Admin\User\ListService;
-use App\Services\Api\Admin\User\CreateService;
-use App\Services\Api\Admin\User\UpdateService;
-use App\Services\Api\Admin\User\ShowService;
-use App\Services\Api\Admin\User\DestroyService;
+use App\Services\Api\Admin\User\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends AbstractController
 {
     /**
-     * @var ListService
+     * @var UserService
      */
-    private $listService;
-
-    /**
-     * @var CreateService
-     */
-    private $createService;
-
-    /**
-     * @var ShowService
-     */
-    private $showService;
-
-    /**
-     * @var UpdateService
-     */
-    private $updateService;
-
-    /**
-     * @var DestroyService
-     */
-    private $destroyService;
+    private $userService;
 
     /**
      * Create a new controller instance.
      *
-     * @param ListService $userService
-     * @param CreateService $userService
-     * @param ShowService $userService
-     * @param UpdateService $userService
-     * @param DestroyService $userService
+     * @param UserService $userService
      */
-    public function __construct(
-        ListService $listService,
-        CreateService $createService,
-        ShowService $showService,
-        UpdateService $updateService,
-        DestroyService $destroyService
-    )
+    public function __construct(UserService $userService)
     {
-        $this->listService = $listService;
-        $this->createService = $createService;
-        $this->showService = $showService;
-        $this->updateService = $updateService;
-        $this->destroyService = $destroyService;
+        $this->userService = $userService;
     }
 
     /**
@@ -72,7 +34,7 @@ class UserController extends AbstractController
      */
     public function index(Request $request)
     {
-        $this->apiData = $this->listService->handle($request);
+        $this->apiData = $this->userService->list($request);
 
         return $this->success();
     }
@@ -85,7 +47,7 @@ class UserController extends AbstractController
      */
     public function store(CreateRequest $request)
     {
-        $this->apiData = $this->createService->handle($request);
+        $this->apiData = $this->userService->store($request);
 
         return $this->success();
     }
@@ -98,7 +60,7 @@ class UserController extends AbstractController
      */
     public function show(Request $request)
     {
-        $this->apiData = $this->showService->handle($request);
+        $this->apiData = $this->userService->show($request);
 
         return $this->success();
     }
@@ -112,7 +74,7 @@ class UserController extends AbstractController
      */
     public function update(UpdateRequest $request, $id)
     {
-        $this->apiData = $this->updateService->handle($request);
+        $this->apiData = $this->userService->update($request);
 
         return $this->success();
     }
@@ -126,7 +88,7 @@ class UserController extends AbstractController
      */
     public function destroy(Request $request, $id)
     {
-        $this->apiData = $this->destroyService->handle($request);
+        $this->apiData = $this->userService->delete($request);
 
         return $this->success();
     }

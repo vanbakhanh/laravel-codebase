@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Services\Api\Admin\User;
+namespace App\Services\Api\User;
 
 use App\Repositories\Contracts\UserRepository;
 use App\Services\AbstractService;
-use Auth;
 
-class ListService extends AbstractService
+class UserService extends AbstractService
 {
     /**
      * @var UserRepository
@@ -24,11 +23,13 @@ class ListService extends AbstractService
     }
 
     /**
-     * Get list all user.
-     * @return array
+     * Handle show user.
+     *
+     * @param int $id
+     * @return Response
      */
-    public function handle($request)
+    public function show($request)
     {
-        return $this->repository->with('profile')->paginate(config('constants.pagination'));
+        return user()->load('profile');
     }
 }

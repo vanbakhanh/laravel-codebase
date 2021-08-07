@@ -41,11 +41,6 @@ class LoginService extends AbstractService
             });
         }
 
-        return $this->handleLogin($user);
-    }
-
-    private function handleLogin($user)
-    {
         Auth::login($user);
 
         return Auth::check();

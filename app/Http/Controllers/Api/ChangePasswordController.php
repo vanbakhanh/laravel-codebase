@@ -5,18 +5,18 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\ChangePassword\UpdateRequest;
-use App\Services\Api\ChangePassword\UpdateService;
+use App\Services\Api\ChangePassword\ChangePasswordService;
 
 class ChangePasswordController extends AbstractController
 {
     /**
      * Create a new controller instance.
      *
-     * @param UpdateService $updateService
+     * @param ChangePasswordService $changePasswordService
      */
-    public function __construct(UpdateService $updateService)
+    public function __construct(ChangePasswordService $changePasswordService)
     {
-        $this->updateService = $updateService;
+        $this->changePasswordService = $changePasswordService;
     }
 
     /**
@@ -27,7 +27,7 @@ class ChangePasswordController extends AbstractController
      */
     public function update(UpdateRequest $request)
     {
-        $this->updateService->handle($request);
+        $this->changePasswordService->handle($request);
         $this->apiMessage = trans('passwords.changed');
 
         return $this->success();

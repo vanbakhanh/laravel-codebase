@@ -3,27 +3,11 @@
 namespace App\Services\Api\ChangePassword;
 
 use App\Exceptions\Api\NotFoundException;
-use App\Repositories\Contracts\UserRepository;
 use App\Services\AbstractService;
 use Hash;
 
-class UpdateService extends AbstractService
+class ChangePasswordService extends AbstractService
 {
-    /**
-     * @var UserRepository
-     */
-    private $repository;
-
-    /**
-     * UpdateService constructor.
-     *
-     * @param UserRepository $repository
-     */
-    public function __construct(UserRepository $repository)
-    {
-        $this->repository = $repository;
-    }
-
     /**
      * Handle change password user.
      *

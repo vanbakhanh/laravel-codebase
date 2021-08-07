@@ -2,36 +2,25 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\User\UpdateRequest;
-use App\Services\Api\User\ShowService;
-use App\Services\Api\User\UpdateService;
+use App\Services\Api\User\UserService;
 use Illuminate\Http\Request;
 
 class UserController extends AbstractController
 {
     /**
-     * @var UpdateService $updateService
+     * @var UserService $userService
      */
-    private $updateService;
-
-    /**
-     * @var ShowService $showService
-     */
-    private $showService;
+    private $userService;
 
     /**
      * Create a new controller instance.
      *
-     * @param UpdateService $updateService
-     * @param ShowService $showService
+     * @param UserService $userService
      */
-    public function __construct(
-        UpdateService $updateService,
-        ShowService $showService
-    ) {
-        $this->updateService = $updateService;
-        $this->showService = $showService;
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
     }
 
     /**
@@ -63,7 +52,7 @@ class UserController extends AbstractController
      */
     public function show(Request $request)
     {
-        $this->apiData = $this->showService->handle($request);
+        $this->apiData = $this->userService->show($request);
 
         return $this->success();
     }
