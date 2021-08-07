@@ -56,15 +56,17 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    @role(config('authorization.roles.super-admin'))
+                                        <a class="dropdown-item" href="{{ route('admin.index') }}">{{ __('Admin dashboard') }}</a>
+                                    @endrole
+
                                     <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit profile') }}</a>
 
                                     @if (@Auth::user()->email)
                                         <a class="dropdown-item" href="{{ route('change-password.edit') }}">{{ __('Change password') }}</a>
                                     @endif
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
