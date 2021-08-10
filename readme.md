@@ -15,39 +15,31 @@ Codebase is a web application base on Laravel Framework 8.x with expressive, ele
 
 Open your favorite Terminal and run these commands.
 
-Build and run docker for environment.
+For development environment:
 
 ```sh
-$ cp docker-compose.yml.example docker-compose.yml
-$ cp docker/nginx/nginx.conf.example docker/nginx/nginx.conf
-$ docker-compose build
-$ docker-compose up -d
+$ docker-compose -f docker-compose-dev.yml build
+$ docker-compose -f docker-compose-dev.yml up -d
 $ docker-compose exec laravel sh
-```
-
-After build and run docker, run these commands to install dependencies.
-
-```sh
+$ composer install
 $ npm install
 $ npm run dev
-$ composer install
+$ php artisan db:seed
 ```
 
-Run these commands to generate application configurations.
+For production environment:
 
 ```sh
-$ cp .env.example .env
-$ php artisan key:generate
-$ php artisan storage:link
-$ php artisan migrate --seed
-$ php artisan passport:keys
-$ chown -R www-data:www-data /application/storage /application/bootstrap/cache
+$ docker-compose -f docker-compose-prod.yml build
+$ docker-compose -f docker-compose-prod.yml up -d
+$ docker-compose exec laravel sh
+$ php artisan db:seed
 ```
 
 Verify the deployment by navigating to your server address in your preferred browser.
 
 ```sh
-https://127.0.0.1/
+http://127.0.0.1/
 ```
 
 Admin account: admin@email.com/12345678

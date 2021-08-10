@@ -3,10 +3,11 @@
 bootstrap/cache/*
 node_modules
 public/dist/*
-storage/app/*
+storage/debugbar/*
 storage/framework/cache/*
 storage/framework/sessions/*
 storage/framework/views/*
 storage/logs/*
-vendor
 data
+vendor
+postman
