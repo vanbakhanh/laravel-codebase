@@ -54,7 +54,6 @@ COPY ./docker/php-fpm/php-ini-overrides.ini $PHP_INI_DIR/conf.d/99-overrides.ini
 COPY ./docker/php-fpm/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY ./docker/php-fpm/docker-entrypoint-prod.sh /usr/local/bin/docker-entrypoint.sh
 COPY ./docker/nginx/nginx-prod.conf /etc/nginx/http.d/default.conf
-COPY ./docker/nginx/ssl /etc/nginx/ssl
 COPY ./docker/env/${APP_ENV}.env .env
 
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
