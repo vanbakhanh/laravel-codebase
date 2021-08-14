@@ -13,21 +13,23 @@ class VerifyEmailNotification extends VerifyEmail
     use Queueable;
 
     /**
-     * Get the verification URL for the given notifiable.
+     * Get the verification URL for the Single Page Application.
      *
      * @param  mixed  $notifiable
      * @return string
      */
     protected function verificationUrl($notifiable)
     {
+        if (empty(env('APP_SPA_URL'))) {
+            return parent::verificationUrl($notifiable);
+        }
+
         $url = URL::temporarySignedRoute(
             'api.verification.verify',
             Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
             ['id' => $notifiable->getKey()]
         );
 
-        $clientUrl = str_replace(env('APP_URL') . '/api', env('APP_CLIENT_URL'), $url);
-
-        return $clientUrl;
+        return str_replace(env('APP_URL') . '/api', env('APP_SPA_URL'), $url);
     }
 }

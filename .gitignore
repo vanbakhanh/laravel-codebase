@@ -10,11 +10,10 @@
 /public/mix-manifest.json
 .env
 .phpunit.result.cache
+docker-compose.override.yml
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-docker-compose.yml
-composer.lock
-package-lock.json
-.vscode
+/.idea
+/.vscode
