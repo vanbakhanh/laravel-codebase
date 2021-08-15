@@ -19,11 +19,8 @@ class UserRepositoryEloquent extends AbstractRepositoryEloquent implements UserR
      */
     protected $fieldSearchable = [
         'email',
-        'status',
         'profile.first_name',
         'profile.last_name',
-        'profile.phone',
-        'profile.gender',
     ];
 
     /**

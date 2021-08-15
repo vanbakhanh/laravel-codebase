@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Repositories\Criteria\PermissionCriteria;
 use App\Repositories\Contracts\PermissionRepository;
 use Spatie\Permission\Models\Permission;
 
@@ -15,6 +15,13 @@ use Spatie\Permission\Models\Permission;
 class PermissionRepositoryEloquent extends BaseRepository implements PermissionRepository
 {
     /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'name',
+    ];
+
+    /**
      * Specify Model class name
      *
      * @return string
@@ -24,13 +31,11 @@ class PermissionRepositoryEloquent extends BaseRepository implements PermissionR
         return Permission::class;
     }
 
-
-
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(PermissionCriteria::class));
     }
 }

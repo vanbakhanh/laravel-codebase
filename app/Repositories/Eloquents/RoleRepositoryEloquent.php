@@ -3,7 +3,7 @@
 namespace App\Repositories\Eloquents;
 
 use Prettus\Repository\Eloquent\BaseRepository;
-use Prettus\Repository\Criteria\RequestCriteria;
+use App\Repositories\Criteria\RoleCriteria;
 use App\Repositories\Contracts\RoleRepository;
 use Spatie\Permission\Models\Role;
 
@@ -15,6 +15,13 @@ use Spatie\Permission\Models\Role;
 class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
 {
     /**
+     * @var array
+     */
+    protected $fieldSearchable = [
+        'name',
+    ];
+
+    /**
      * Specify Model class name
      *
      * @return string
@@ -24,13 +31,11 @@ class RoleRepositoryEloquent extends BaseRepository implements RoleRepository
         return Role::class;
     }
 
-
-
     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
-        $this->pushCriteria(app(RequestCriteria::class));
+        $this->pushCriteria(app(RoleCriteria::class));
     }
 }
