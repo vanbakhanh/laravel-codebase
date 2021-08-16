@@ -13,9 +13,9 @@ services:
       - "80:80"
       - "443:443"
     depends_on:
-      - laravel
-      - mongo
+      - mysql
       - redis
+      - laravel
 
   laravel:
     image: vanbakhanh/codebase-laravel-dev
@@ -28,6 +28,9 @@ services:
       - .:/var/www/html
     ports:
       - "9000:9000"
+    depends_on:
+      - mysql
+      - redis
 
   mysql:
     image: mysql:8.0
@@ -53,19 +56,6 @@ services:
   #   environment:
   #     MONGO_INITDB_ROOT_USERNAME: root
   #     MONGO_INITDB_ROOT_PASSWORD: secret
-
-  # mongo-express:
-  #   image: mongo-express
-  #   container_name: codebase-mongo-express-dev
-  #   ports:
-  #     - "8081:8081"
-  #   depends_on:
-  #     - mongo
-  #   environment:
-  #     ME_CONFIG_MONGODB_ADMINUSERNAME: root
-  #     ME_CONFIG_MONGODB_ADMINPASSWORD: secret
-  #     ME_CONFIG_MONGODB_SERVER: mongo
-  #   restart: unless-stopped
 
   redis:
     image: redis:alpine
